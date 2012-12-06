@@ -4,8 +4,8 @@ class Tunegoer < ActiveRecord::Base
   
   has_many :reviews
   has_many :artists, :through => :review
-  has_many :es_amigos
-  has_many :tunegoers, :through => :es_amigo
+  has_many :friends
+  has_many :tunegoers, :through => :friend
   has_many :tienes
   has_many :artists, :through => :tiene
   
