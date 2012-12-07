@@ -9,7 +9,7 @@ gem 'rails', '3.2.8'
 group :development, :test do
   gem 'sqlite3'
   gem 'debugger'
-  gem 'rspec-expectations'
+  
 end
 
 group :production do
@@ -32,9 +32,12 @@ gem 'haml'
 
 
 group :test do
-#   gem 'cucumber-rails'
-#   gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions  
+  gem 'rspec-rails'
+  gem 'ZenTest' # autotest
+  gem 'rspec-expectations'
+  gem 'cucumber-rails', :require => false
+  gem 'cucumber-rails-training-wheels' # some pre-fabbed step definitions  
   gem 'database_cleaner' # to clear Cucumber's test database between runs
-#   gem 'capybara'         # lets Cucumber pretend to be a web browser
+  gem 'capybara'         # lets Cucumber pretend to be a web browser
   gem 'launchy'          # a useful debugging aid for user stories
 end
