@@ -55,4 +55,20 @@ Minitunes::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+  
+  # Main
+  root :to           => redirect('/index')
+  match 'index'      => 'index#index', :as => :index
+
+  # Twitter
+  match 'auth/:provider/callback' => 'sessions#create'
+  match '/logout'    => 'sessions#destroy', :as => :logout
+  match '/login'     => 'sessions#login', :as => :login
+  
+  # Profile of a User
+  match '/user/:id'  => 'user#profile', :as => :profile
+  match '/user'      => 'user#profile', :as => :profile
+  
+  # Whatever search in BD
+  match '*path'      => 'artist#show'
 end
