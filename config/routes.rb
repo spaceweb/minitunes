@@ -69,6 +69,10 @@ Minitunes::Application.routes.draw do
   match '/user/:id'  => 'user#profile', :as => :profile
   match '/user'      => 'user#profile', :as => :profile
   
+  # Review
+  match '/reviews'  => 'reviews#create', :as => 'reviews'
+  match '/reviews/new'  => 'reviews#new', :as => 'new_review'
+  
   # Whatever search in BD
   match '*path'      => 'artist#show'
 end
