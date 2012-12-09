@@ -14,12 +14,15 @@
 ActiveRecord::Schema.define(:version => 20121206153430) do
 
   create_table "albums", :force => true do |t|
-    t.string "name"
+    t.string   "name"
+    t.integer  "tracks"
+    t.datetime "release_date"
   end
 
   create_table "artists", :force => true do |t|
     t.string "name"
     t.text   "description"
+    t.string "similar"
   end
 
   create_table "contienes", :force => true do |t|
@@ -45,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20121206153430) do
   create_table "songs", :force => true do |t|
     t.string  "name"
     t.integer "track"
+    t.integer "duration"
   end
 
   create_table "tienes", :force => true do |t|
