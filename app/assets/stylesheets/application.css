@@ -11,3 +11,11 @@
  *= require_self
  *= require_tree .
  */
+a.title {
+  text-decoration:none;
+}
+#notice, #warning {
+  background: rosybrown;
+  margin: 1em 0;
+  padding: 4px;
+}

@@ -1,7 +1,16 @@
 -#  This file is app/views/index/index.html.haml
 
-%h1 /artist
+%h1 
+  = @artist.name
 
-= link_to 'Add Artist', profile_path
+%p#description= @artist.description
 
-= link_to 'Add Comment', new_review_path
+-if @artist.name
+  = link_to 'Add Artist', profile_path
+
+  %h3 Similar Artists
+  -if @artist.similar
+    %p#similar
+      = link_to @artist.similar, "/#{URI.parse(URI.encode(@artist.similar))}"
+  
+  = link_to 'Add Comment', new_review_path
