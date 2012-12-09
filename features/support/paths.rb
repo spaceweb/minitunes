@@ -16,14 +16,11 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
-    #GONZALO
     when /^the "(.*)" page$/ then
+      "/#{URI.parse(URI.encode($1))}"
       
-      "/#{Artist.find_by_name($1)}'"
-      
-    #GONZALO
     when /^my "(.*)"$/ then
-      "/user/#{Tunegoer.find_by_name($1)}"
+      "/user/#{$1}"
       
     #GONZALO
     when /^the Login page$/ then
@@ -31,6 +28,9 @@ module NavigationHelpers
       
     when /^the Reviews page$/ then
       '/reviews/new'
+      
+    when /^my Profile "(.*)"$/ then
+      "/user/#{$1}"
       
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
