@@ -7,9 +7,11 @@ Feature: User can add comments
 Scenario: Add comments on Minitunes with a registered user
   Given I am logged in
   And I visit the "Shakira" page
+  When I follow "Add Comment"
+  Then I should be on the Reviews page
   Then I should see "Comments"
   Then I fill in "Comments" with "Esto es un comentario"
-  And I press "Add Comment"
+  And I press "Create Comment"
   Then I should be on the "Shakira" page
   Then I should see "Esto es un comentario"
 
