@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+artists = [{:name => 'Shakira', :description => 'Colombian singer', :similar => 'Paulina Rubio'},
+        {:name => 'Paulina Rubio', :description => 'Mexican singer', :similar => 'Shakira'},
+     ]
+
+artists.each do |artist|
+  Artist.create!(artist)
+end
