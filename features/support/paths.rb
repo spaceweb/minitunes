@@ -16,7 +16,11 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
+    #*****************Teneis que cambiar todo sino no puedes diferenciar entre artista y usuario**************** Ahora en la featura the Artist "nombre" page
     when /^the "(.*)" page$/ then
+      "/#{URI.parse(URI.encode($1))}"
+
+    when /^the Artist "(.*)" page$/ then
       "/#{URI.parse(URI.encode($1))}"
       
     when /^my "(.*)"$/ then

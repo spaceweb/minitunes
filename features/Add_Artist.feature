@@ -6,15 +6,14 @@ Feature: User can add artist
 
 Scenario: Add artist on Minitunes with a registered user
     Given I am logged in
-    And   I visit the "Shakira" page
+    And   I visit the "Artist "Shakira" page
     Then  I follow "Add Artist"
-    Then  I go to my "profile"
+    Then  I should be on to my "profile"
     Then  I should see "Shakira"
 
 Scenario: Add artist on Minitunes with an unregistered user
-    Given I am on the "Shakira" page
+    Given I am on the Artist "Shakira" page
     Then  I follow "Add Artist"
-    #Posible modificación a "I should be on" pero recibo user (no esta programado)
-    Then  I go to the Login page
+    Then  should be on the Login page
 
 
