@@ -4,9 +4,9 @@ class Tunegoer < ActiveRecord::Base
   
   has_many :reviews
   has_many :artists, :through => :review
-  has_many :friends
+  has_many :friends, :dependent => :destroy
   has_many :tunegoers, :through => :friend
-  has_many :tienes
+  has_many :tienes, :dependent => :destroy
   has_many :artists, :through => :tiene
   
   def self.create_with_omniauth(auth)
@@ -16,4 +16,3 @@ class Tunegoer < ActiveRecord::Base
       :name => auth["info"]["name"])
   end
 end
-
