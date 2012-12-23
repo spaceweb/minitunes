@@ -11,6 +11,8 @@
       %div{:class=>"navbar-inner"}
         %div{:class=>"container"}
           %a{:href=>"/", :class=>"brand"} Minitunes
+          %form{:class=>"navbar-search pull-left"}
+            %input{:type=>"text", :class=>"search-query", :placeholder=>"Search"}
     #main{:class=>"container"}
       - if flash[:notice]
         #notice.message= flash[:notice]
