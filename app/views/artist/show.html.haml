@@ -6,7 +6,7 @@
 %p#description= @artist.description
 
 -if @artist.name
-  = link_to 'Add Artist', profile_path
+  = link_to 'Add Artist', profile_path, class: "btn btn-primary"
 
   %h3 Similar Artists
   -if @artist.similar
