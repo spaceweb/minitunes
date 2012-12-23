@@ -11,9 +11,15 @@
  *= require_self
  *= require_tree .
  */
+
+body {
+  padding-top: 60px;
+}
+
 a.title {
   text-decoration:none;
 }
+
 #notice, #warning {
   background: rosybrown;
   margin: 1em 0;
