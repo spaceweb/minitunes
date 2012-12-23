@@ -7,9 +7,11 @@
     = csrf_meta_tags
 
   %body
-    %a.title{:href=>'/'}
-      %h1.title Minitunes
-    #main
+    %div{:class=>"navbar navbar-inverse navbar-fixed-top"}
+      %div{:class=>"navbar-inner"}
+        %div{:class=>"container"}
+          %a{:href=>"/", :class=>"brand"} Minitunes
+    #main{:class=>"container"}
       - if flash[:notice]
         #notice.message= flash[:notice]
       - elsif flash[:warning]
