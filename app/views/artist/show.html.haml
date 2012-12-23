@@ -13,4 +13,4 @@
     %p#similar
       = link_to @artist.similar, "/#{URI.parse(URI.encode(@artist.similar))}"
   
-  = link_to 'Add Comment', new_review_path
+  = link_to 'Add Comment', new_review_path, class: "btn btn-success"
