@@ -1,5 +1,8 @@
-%h1 Comments
+%h3 Add new comment
 = form_tag :action => "create", :controller=>"reviews" do
-  = label :review, :comments, 'Comments'
+  = label :review, :comments, 'Comment'
   = text_area :review, :comments
-  = submit_tag 'Create Comment'
+
+  %br
+  = submit_tag 'Cancel', class: "btn btn-secundary"
+  = submit_tag 'Create Comment', class: "btn btn-primary"
