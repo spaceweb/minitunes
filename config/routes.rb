@@ -20,7 +20,7 @@ Minitunes::Application.routes.draw do
   end
 
   # map '/' to be a redirect to '/movies'
-  root :to => redirect('/index')
+  root :to => 'index#index'
 
   # Sample resource route with options:
   #   resources :products do
