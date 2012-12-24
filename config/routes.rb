@@ -13,6 +13,15 @@ Minitunes::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
+  resources :artists do
+    resources :albums
+    resources :songs
+    resources :reviews
+  end
+
+  # map '/' to be a redirect to '/movies'
+  root :to => redirect('/index')
+
   # Sample resource route with options:
   #   resources :products do
   #     member do
@@ -55,24 +64,4 @@ Minitunes::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
-  
-  # Main
-  root :to           => redirect('/index')
-  match 'index'      => 'index#index', :as => :index
-
-  # Twitter
-  match 'auth/:provider/callback' => 'sessions#create'
-  match '/logout'    => 'sessions#destroy', :as => :logout
-  match '/login'     => 'sessions#login', :as => :login
-  
-  # Profile of a User
-  match '/user/:id'  => 'user#profile', :as => :profile
-  match '/user'      => 'user#profile', :as => :profile
-  
-  # Review
-  match '/reviews'  => 'reviews#create', :as => 'reviews'
-  match '/reviews/new'  => 'reviews#new', :as => 'new_review'
-  
-  # Whatever search in BD
-  match '*path'      => 'artist#show'
 end
