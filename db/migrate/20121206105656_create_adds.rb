@@ -1,6 +1,6 @@
-class CreateTienes < ActiveRecord::Migration
+class CreateAdds < ActiveRecord::Migration
   def change
-    create_table 'tienes' do |t|
+    create_table 'adds' do |t|
       t.references :tunegoer
       t.references :artist
     end
