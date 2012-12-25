@@ -1,4 +1,4 @@
-class Contiene < ActiveRecord::Base
+class Contain < ActiveRecord::Base
   belongs_to 'album'
   belongs_to 'song'
   validates_presence_of :album
