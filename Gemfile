@@ -29,6 +29,7 @@ end
 gem 'jquery-rails'
 
 gem 'haml'
+gem 'devise'
 
 
 group :test do

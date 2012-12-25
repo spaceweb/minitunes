@@ -8,9 +8,6 @@
 -if @artist.name
   = link_to 'Add Artist', new_artist_path, class: "btn btn-primary"
 
-  %h3 Similar Artists
-  -if @artist.similar
-    %p#similar
-      = link_to @artist.similar, "/#{URI.parse(URI.encode(@artist.similar))}"
+  = render 'similar'
 
 = link_to 'Add Comment', new_artist_review_path(@artist), class: "btn btn-success"
