@@ -1,5 +1,5 @@
 class Friend < ActiveRecord::Base
-  belongs_to :tunegoer
-  validates_presence_of :tunegoer
-  validates_presence_of :tunegoer
+  belongs_to :user
+  validates_presence_of :user
+  validates_presence_of :user
 end
