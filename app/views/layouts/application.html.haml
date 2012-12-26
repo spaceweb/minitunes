@@ -21,10 +21,8 @@
               %li= link_to "Register", register_path
               %li= link_to "Log in", login_path
     #main{:class=>"container"}
-      - if flash[:notice]
-        #notice.message= flash[:notice]
-      - elsif flash[:warning]
-        #warning.message= flash[:warning]
-      - if flash[:alert]
-        #alert.message= flash[:alert]
+      - flash.each do |type, message|
+        %div{:class=>"alert #{flash_class type}"}
+          %button{:class=>"close", "data-dismiss"=>"alert"} x
+          = message
       = yield
