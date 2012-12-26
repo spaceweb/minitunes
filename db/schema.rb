@@ -13,6 +13,11 @@
 
 ActiveRecord::Schema.define(:version => 20121225195414) do
 
+  create_table "adds", :force => true do |t|
+    t.integer "user_id"
+    t.integer "artist_id"
+  end
+
   create_table "albums", :force => true do |t|
     t.string   "name"
     t.integer  "tracks"
@@ -25,13 +30,13 @@ ActiveRecord::Schema.define(:version => 20121225195414) do
     t.string "similar"
   end
 
-  create_table "contienes", :force => true do |t|
+  create_table "contains", :force => true do |t|
     t.integer "album_id"
     t.integer "song_id"
   end
 
   create_table "friends", :force => true do |t|
-    t.integer "tunegoer_id"
+    t.integer "user_id"
   end
 
   create_table "participates", :force => true do |t|
@@ -41,7 +46,7 @@ ActiveRecord::Schema.define(:version => 20121225195414) do
 
   create_table "reviews", :force => true do |t|
     t.text    "comments"
-    t.integer "tunegoer_id"
+    t.integer "user_id"
     t.integer "artist_id"
   end
 
@@ -49,17 +54,6 @@ ActiveRecord::Schema.define(:version => 20121225195414) do
     t.string  "name"
     t.integer "track"
     t.integer "duration"
-  end
-
-  create_table "tienes", :force => true do |t|
-    t.integer "tunegoer_id"
-    t.integer "artist_id"
-  end
-
-  create_table "tunegoers", :force => true do |t|
-    t.string "name"
-    t.string "provider"
-    t.string "uid"
   end
 
   create_table "users", :force => true do |t|
