@@ -10,6 +10,13 @@ artists = [{:name => 'Shakira', :description => 'Colombian singer', :similar => 
         {:name => 'Paulina Rubio', :description => 'Mexican singer', :similar => 'Shakira'},
      ]
 
+users = [{:name => 'Charlie Brown', :email => 'charlie@brown.com', :profile_name => 'charlieprofile', :password => "123456"}
+     ]
+
 artists.each do |artist|
   Artist.create!(artist)
+end
+
+users.each do |user|
+  User.create!(user)
 end
