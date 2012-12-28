@@ -25,11 +25,7 @@ Minitunes::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  resources :artists do
-    resources :albums
-    resources :songs
-    resources :reviews
-  end
+  get 'artists/:name', to: 'artists#show', as: :artist
 
   # map '/' to be a redirect to '/movies'
   root :to => 'index#index'
