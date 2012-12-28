@@ -2,3 +2,8 @@ charlie:
   name: "charlie"
   email: "charlie@brown.com"
   profile_name: "charlie_profile"
+
+dean:
+  name: "dean"
+  email: "dean@moriarty.com"
+  profile_name: "dean_profile"
