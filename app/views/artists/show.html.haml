@@ -6,7 +6,7 @@
 %p#description= @artist.description
 
 -if @artist.name
-  = link_to 'Add Artist', new_artist_path, class: "btn btn-primary"
+  = link_to 'Add Artist', artists_path(:name => @artist.name, :description => @artist.description, :similar => @artist.similar), :method => :post, class: "btn btn-primary"
 
   = render 'similar'
 
