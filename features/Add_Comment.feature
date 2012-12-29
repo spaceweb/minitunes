@@ -21,7 +21,7 @@ Scenario: Add comments on Minitunes with a registered user
   Then I fill in "Add your comment" with "This is a comment"
   And I press "Create Comment"
   Then I should be on the "Shakira" page artist
-  Then I should see "Esto es un comentario"
+  Then I should see "This is a comment"
 
 Scenario: Try to comment on the website of an artist when not registered
   When I go to the "Shakira" page artist
