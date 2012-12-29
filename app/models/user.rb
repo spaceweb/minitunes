@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
                           }
   has_many :reviews
   has_many :artists, :through => :review
-  has_many :friends, :dependent => :destroy
-  has_many :users, :through => :friend
+  has_many :friendships
+  has_many :friends, through: :friendships, :dependent => :destroy
   has_many :adds, :dependent => :destroy
   has_many :artists, :through => :add
   # attr_accessible :title, :body
