@@ -38,17 +38,35 @@ user1.adds << r3
 user2 = User.find_by_name('Snoopy')
 user2.adds << r2
 
-#Robin retoca esto que no me va, lo que hago es asignarle dos albumes a shakira para ir probando cosas
-#albums = [{:name => 'She Wolf', :tracks => 28, :release_date => '9-oct-2009'},
-#          {:name => 'Sale El Sol', :tracks => 16, :release_date => '19-oct-2010'},
-#     ]
+#Albums
+albums = [{:name => 'She Wolf', :tracks => 28, :release_date => '9-oct-2009'},
+          {:name => 'Sale El Sol', :tracks => 16, :release_date => '19-oct-2010'},
+     ]
 
-#albums.each do |album|
-#  Album.create!(album)
-#end
+albums.each do |album|
+  Album.create!(album)
+end
+#Relaciones
+album1 = Album.find_by_name('She Wolf')
+album2 = Album.find_by_name('Sale El Sol')
+r1 = album1.participates.build
+r2 = album2.participates.build
 
-#r3 = shakira.participates.build
-#albums.each do |album|
-#  album.participates << r3
-#end
- 
+shakira.participates << r1
+shakira.participates << r2
+
+#Songs
+songs = [{:name => 'Whenever, Wherever'},
+         {:name => 'Loba'},
+     ]
+songs.each do |song|
+  Song.create!(song)
+end
+#Relaciones
+song1 = Song.find_by_name('Whenever, Wherever')
+song2 = Song.find_by_name('Loba')
+r1 = song1.contains.build
+r2 = song2.contains.build
+
+album1.contains << r1
+album1.contains << r2
