@@ -12,4 +12,8 @@ module ApplicationHelper
       ""
     end
   end
+
+  def uri(string)
+    URI.parse(URI.encode(string))
+  end
 end
