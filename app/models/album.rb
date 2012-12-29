@@ -3,7 +3,7 @@ class Album < ActiveRecord::Base
   has_many :participates, :dependent => :destroy
   has_many :artists, :through => :participate
   has_many :contains, :dependent => :destroy
-  has_many :songs, :through => :contiene
+  has_many :songs, :through => :contain
   validates_uniqueness_of :name
 end
  
