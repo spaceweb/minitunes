@@ -7,3 +7,8 @@ dean:
   name: "dean"
   email: "dean@moriarty.com"
   profile_name: "dean_profile"
+
+bilbo:
+  name: "Bilbo Baggins"
+  email: "bilbo@baggins.com"
+  profile_name: "bilboprofile"
