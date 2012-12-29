@@ -11,7 +11,6 @@ describe Add do
 
   it "creates relationship between User-Artist" do
     r = @fake_shakira.adds.build
-    @fake_charlie.adds.stub(:<<).with(r)
-    @fake_charlie.adds.include?(@fake_shakira) == 'True'
-  end
+    @fake_charlie.adds.send(:<<, r)
+    @fake_charlie.adds.include?(@fake_shakira) == true
 end
