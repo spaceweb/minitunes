@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Friend do
+describe Friendship do
   
   fixtures :users
 
