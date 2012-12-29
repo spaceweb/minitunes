@@ -1,9 +1,9 @@
 .page-header
-  %h1= @user.name
+  %h1= current_user.name
 
   
 - if @artists
   %h2 Collection
   - @artists.each do |artist|
     %pre
-      = link_to artist.name, '/'
+      = link_to artist.name, artist_path(uri(artist.name))
