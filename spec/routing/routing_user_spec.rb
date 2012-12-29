@@ -18,7 +18,7 @@ describe Devise::SessionsController do
   end
 
   it "that profile page works" do
-    get("/charlie_profile").should route_to("profile#show")
+    get("/charlie_profile").should route_to("profiles#show", id: "charlie_profile")
   end
  
 end
