@@ -1,0 +1,7 @@
+= form_tag artist_path do
+  = label :review, :comments, 'Add your comment'
+  = text_area :review, :comments, :size => '20x5'
+
+  %br
+  = submit_tag 'Cancel', class: "btn btn-secundary"
+  = submit_tag 'Create Comment', class: "btn btn-primary"

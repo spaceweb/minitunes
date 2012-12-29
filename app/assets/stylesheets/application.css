@@ -25,3 +25,23 @@ a.title {
   margin: 1em 0;
   padding: 4px;
 }
+
+hr {
+  border: 0;
+  width: 80%;
+  background-color: grey;
+  height: 2px;
+}
+
+#reviews_header {
+  color: red;
+  font-weight: bold;
+  font-size: 150%
+}
+
+#review_user {
+  color: royalblue ;
+  font-weight: bold;
+  position: relative;
+  top: 1em;
+}

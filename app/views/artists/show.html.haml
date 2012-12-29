@@ -6,8 +6,13 @@
 %p#description= @artist.description
 
 -if @artist.name
-  = link_to 'Add Artist', artists_path(:name => @artist.name, :description => @artist.description, :similar => @artist.similar), :method => :post, class: "btn btn-primary"
+  = link_to 'Add Artist', artist_path(:name => @artist.name, :description => @artist.description, :similar => @artist.similar), :method => :post, class: "btn btn-primary"
 
   = render 'similar'
 
-= link_to 'Add Comment', new_artist_review_path(@artist), class: "btn btn-success"
+%h#reviews_header Number of reviews: #{@num_reviews}
+- @reviews.each do |review|
+  #review_user= review.user.name
+  %hr
+  = review.comments
+= render 'artist_review_form'
