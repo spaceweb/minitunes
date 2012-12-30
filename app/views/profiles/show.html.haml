@@ -1,9 +1,13 @@
 .page-header
-  %h1= current_user.name
+  %h1= @user.name
 
-  
+- if @friend
+  = form_tag friendships_path, method: :post do |form|
+    = hidden_field_tag(:friend_id, @friend.id)
+    = submit_tag "Add Friend", class: 'btn btn-primary'
+
 - if @artists
-  %h2 Collection
+  %h2 Favorites Artists
   - @artists.each do |artist|
     %pre
       = link_to artist.name, artist_path(uri(artist.name))
