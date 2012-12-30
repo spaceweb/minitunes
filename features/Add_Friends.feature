@@ -5,13 +5,23 @@ Feature: Testing the profiles's users of Minitunes
   I want to be able to add friends
 
   Background:
-    Given I am logged in
-    Given Fulanito is a user of MiniTunes
+    Given the following Artists exist:
+    | name          | description      | similar       |
+    | Shakira       | colombian singer | Paulina Rubio |
+    | Paulina Rubio | mexican singer   | Shakira       |
+
+    Given the following Users exist:
+    | name    | email               | password  | profile_name   |
+    | Charlie | Charlie@Charlie.com | 123456    | CharlieProfile |
+    | Brown   | Brown@Brown.com     | 123456    | BrownProfile   |
+
+    Given I am logged in as Brown@Brown.com
 
 Scenario: Add friends on Minitunes with a registered user
-    And   I visit the user profile page of Fulanito
-    Then  I should see "Favorites Artist"
-    Then  I follow "Add friend"
-    Then  I should see "Fulanito is now your friend"
-    Then  I go to my profile
-    Then  I should see "Fulanito"
+    And   I visit the profile page CharlieProfile
+    Then  I should see "Charlie"
+    Then  I should see "Favorites Artists"
+    Then  I press "Add Friend"
+    Then  I should see "You are now friends with Charlie"
+    And   I visit my profile page BrownProfile
+    Then  I should see "Charlie"
