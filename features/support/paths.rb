@@ -36,6 +36,9 @@ module NavigationHelpers
     when /^my Profile "(.*)"$/ then
       "/user/#{$1}"
 
+    when /^the profile page (.*)$/ then
+      "/#{$1}"
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #

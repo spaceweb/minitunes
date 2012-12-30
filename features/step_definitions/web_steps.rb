@@ -30,10 +30,6 @@ module WithinHelpers
   end
 end
 World(WithinHelpers)
-#GONZALO
-Given /^I am logged in$/ do
-  #COMPLETAR
-end
 
 # Single-line step scoper
 When /^(.*) within (.*[^:])$/ do |step, parent|
