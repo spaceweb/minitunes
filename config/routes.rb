@@ -1,15 +1,23 @@
 Minitunes::Application.routes.draw do
   get "profiles/show"
 
-  devise_for :users
-  
-  devise_scope :user do
-    get 'register', to: 'devise/registrations#new', as: :register
-    get 'login', to: 'devise/sessions#new', as: :login
-    get 'logout', to: 'devise/sessions#destroy', as: :logout
+  as :user do
+    get '/register', to: 'devise/registrations#new', as: :register
+    get '/login', to: 'devise/sessions#new', as: :login
+    get '/logout', to: 'devise/sessions#destroy', as: :logout
   end
-  
-  get ':id', to: 'profiles#show'
+
+  devise_for :users, skip: [:sessions]
+
+  as :user do
+    get "/login" => 'devise/sessions#new', as: :new_user_session
+    post "/login" => 'devise/sessions#create', as: :user_session
+    delete "/logout" => 'devise/sessions#destroy', as: :destroy_user_session
+  end
+
+  post 'friendships/create', to: 'friendships#create', as: :friendships
+
+  get ':id', to: 'profiles#show', as: 'profile'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
