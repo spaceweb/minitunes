@@ -42,7 +42,7 @@ describe FriendshipsController do
 
         it "redirect to the profile page of the friend" do
           assert_response :redirect
-          assert_redirected_to profile_path(users(:bilbo))
+          assert_redirected_to profile_path(users(:bilbo).profile_name)
         end
 
         it "set the flash success message" do
