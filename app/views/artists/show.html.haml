@@ -10,9 +10,9 @@
 
   = render 'similar'
 
-%h#reviews_header Number of reviews: #{@num_reviews}
-- @reviews.each do |review|
-  #review_user= review.user.name
-  %hr
-  = review.comments
-= render 'artist_review_form'
+  %h#reviews_header Number of reviews: #{@num_reviews}
+  - @reviews.each do |review|
+    #review_user= review.user.name
+    %hr
+    = review.comments
+  = render 'artist_review_form'
