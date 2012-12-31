@@ -6,9 +6,9 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-artists = [{:name => 'Shakira', :description => 'Colombian singer', :similar => 'Paulina Rubio'},
-        {:name => 'Paulina Rubio', :description => 'Mexican singer', :similar => 'Shakira'},
-        {:name => 'Nelly Furtado', :description => 'Canacian singer', :similar => ['Shakira', 'Paulina Rubio']},
+artists = [{:name => 'Shakira', :description => 'Colombian singer'},
+        {:name => 'Paulina Rubio', :description => 'Mexican singer'},
+        {:name => 'Nelly Furtado', :description => 'Canacian singer'},
      ]
 
 users = [{:name => 'Charlie Brown', :email => 'charlie@brown.com', :profile_name => 'charlieprofile', :password => "123456"},

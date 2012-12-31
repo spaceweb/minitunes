@@ -1,5 +1,5 @@
 class Artist < ActiveRecord::Base
-  attr_accessible :name, :description, :similar
+  attr_accessible :name, :description
   
   has_many :participates, :dependent => :destroy
   has_many :albums, :through => :participate

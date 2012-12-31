@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121230004027) do
+ActiveRecord::Schema.define(:version => 20121231182050) do
 
   create_table "adds", :force => true do |t|
     t.integer "user_id"
@@ -24,10 +24,19 @@ ActiveRecord::Schema.define(:version => 20121230004027) do
     t.datetime "release_date"
   end
 
+  create_table "artist_similars", :force => true do |t|
+    t.text     "name"
+    t.integer  "artist_id"
+    t.integer  "similar_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "artist_similars", ["artist_id", "similar_id"], :name => "index_artist_similars_on_artist_id_and_similar_id"
+
   create_table "artists", :force => true do |t|
     t.string "name"
     t.text   "description"
-    t.string "similar"
   end
 
   create_table "contains", :force => true do |t|
