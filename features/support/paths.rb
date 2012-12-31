@@ -20,15 +20,11 @@ module NavigationHelpers
     when /^the "(.*)" page$/ then
       "/#{URI.parse(URI.encode($1))}"
 
-    when /^the Artist "(.*)" page$/ then
-      "/#{URI.parse(URI.encode($1))}"
-
-    when /^my "(.*)"$/ then
-      "/user/#{$1}"
-
-    #GONZALO
     when /^the Login page$/ then
       '/login'
+    
+    when /^the MiniTunes home page$/ then
+      '/'
 
     when /^the "(.*)" page artist$/ then
       "/artists/#{URI.parse(URI.encode($1))}"
