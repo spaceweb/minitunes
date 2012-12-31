@@ -70,3 +70,10 @@ r2 = song2.contains.build
 
 album1.contains << r1
 album1.contains << r2
+
+
+
+## Artistas similares
+ArtistSimilar.create(artist_id: shakira.id, similar_name: paulina.name, artist_name: shakira.name)
+ArtistSimilar.create(artist_id: nelly.id, similar_name: shakira.name, artist_name: nelly.name)
+
