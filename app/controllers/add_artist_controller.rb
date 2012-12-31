@@ -6,6 +6,6 @@ class AddArtistController < ApplicationController
     relation = @artist.adds.build
     current_user.adds << relation
     flash[:notice] = "#{@artist.name} was successfully added in your collection!"
-    redirect_to "/artists/#{@artist.name}"
+    redirect_to artist_path(@artist.name)
   end
 end
