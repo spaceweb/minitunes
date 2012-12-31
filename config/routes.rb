@@ -16,6 +16,7 @@ Minitunes::Application.routes.draw do
   end
 
   post 'friendships/create', to: 'friendships#create', as: :friendships
+  post 'add_artist/create', to: 'add_artist#create', as: :add_artist
 
   get ':id', to: 'profiles#show', as: 'profile'
 

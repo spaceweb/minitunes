@@ -13,4 +13,5 @@ describe Add do
     r = @fake_shakira.adds.build
     @fake_charlie.adds.send(:<<, r)
     @fake_charlie.adds.include?(@fake_shakira) == true
+  end
 end
