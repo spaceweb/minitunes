@@ -6,8 +6,10 @@
 %p#description= @artist.description
 
 -if @artist.name
-  = link_to 'Add Artist', artist_path(:name => @artist.name, :description => @artist.description, :similar => @artist.similar), :method => :post, class: "btn btn-primary"
-
+  = form_tag add_artist_path, method: :post do |form|
+    = hidden_field_tag(:id, @artist.id)
+    = submit_tag "Add Artist", class: 'btn btn-primary'
+  
   = render 'similar'
 
   %h#reviews_header Number of reviews: #{@num_reviews}

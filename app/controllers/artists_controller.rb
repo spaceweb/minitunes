@@ -5,28 +5,16 @@ class ArtistsController < ApplicationController
     if not @artist
       @artist = Artist.new
       flash[:notice] = "You search \"#{params[:name]}\" did not match anything on MiniTunes"
+      if signed_in?
+        redirect_to "/#{current_user.profile_name}"
+      else
+        redirect_to root_path
+      end
+    else
+      @reviews = @artist.reviews
+      @num_reviews = @reviews.length
     end
-    @reviews = @artist.reviews
-    @num_reviews = @reviews.length
-  end
-
-  def create
-    #Si se encuentra en la base de datos
-    @artist = Artist.find_by_name(params[:name])
-    #si no se encuentra, se crea ---> debería encontrarse, pero nose como va
-    if not @artist
-      @artist = Artist.create!(:name => params[:name], :description => params[:description], :similar => params[:similar])
-    end
-    relation = @artist.adds.build
-    #User tiene que estar en session MODIFICAR
-    user = User.find_by_name('Charlie Brown')
-    user.adds << relation
-    #Porque no salen los flash
-    flash[:notice] == "#{@artist.name} was successfully added in your collection!"
-    #
-    redirect_to "/artists/#{@artist.id}"
   end
 
 end
-
 
