@@ -22,4 +22,13 @@ class User < ActiveRecord::Base
   has_many :adds, :dependent => :destroy
   has_many :artists, :through => :add
   # attr_accessible :title, :body
+
+  def gravatar
+    stripped = email.strip
+    downcased = stripped.downcase
+    hash = Digest::MD5.hexdigest(downcased)
+
+    "http://gravatar.com/avatar/#{hash}"
+  end
+
 end
