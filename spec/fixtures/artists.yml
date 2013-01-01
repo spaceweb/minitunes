@@ -1,18 +1,16 @@
 
 #  Given the following Artists exist:
-#  | name          | description      | similar       |
-#  | Shakira       | colombian singer | Paulina Rubio |
-#  | Paulina Rubio | mexican singer   | Shakira       |
+#  | name          | description      |
+#  | Shakira       | colombian singer |
+#  | Paulina Rubio | mexican singer   |
 
 shakira:
   id: 3
   name: Shakira
   description: colombian
-  similar: Paulina Rubio
-  
+
 paulina:
   id: 4
   name: Paulina
   description: mexican
-  similar: Shakira
 
