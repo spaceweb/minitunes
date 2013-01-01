@@ -25,7 +25,14 @@ describe ProfilesController do
     it "only shows the correct user's collection of favorites artists" do
       get :show, id: users(:dean).profile_name
       assigns[:artists].each do |artist| # Bug: have to fail ;)
-        assert_equal users(:dean), artist.user
+        assert_equal Artist.where(id: users(:dean).adds).include?(artist)
+      end
+    end
+
+    it "only shows the correct user's friends" do
+      get :show, id: users(:dean).profile_name
+      assigns[:friends].each do |friend| # Bug: have to fail ;)
+        assert_equal users(:dean).friends.include?(friend)
       end
     end
   end
