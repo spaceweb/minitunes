@@ -25,14 +25,13 @@ ActiveRecord::Schema.define(:version => 20121231182050) do
   end
 
   create_table "artist_similars", :force => true do |t|
-    t.text     "name"
+    t.string   "artist_name"
+    t.string   "similar_name"
     t.integer  "artist_id"
     t.integer  "similar_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
-
-  add_index "artist_similars", ["artist_id", "similar_id"], :name => "index_artist_similars_on_artist_id_and_similar_id"
 
   create_table "artists", :force => true do |t|
     t.string "name"
