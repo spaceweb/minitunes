@@ -1,27 +1,33 @@
-.page-header
-  %h1= @user.name
 
-- if @friend # Show to add friend
-  = form_tag friendships_path, method: :post do |form|
-    = hidden_field_tag(:friend_id, @friend.id)
-    = submit_tag "Add Friend", class: 'btn btn-primary'
+.row
+  .span3
+    = link_to image_tag(@user.gravatar+"?size=200")
 
-%h2 Friends
-- if @friends.length > 0
-  - @friends.each_with_index do |friend, i|
-    - break if i == 20
-    %pre
-      = link_to friend.name, profile_path(friend.profile_name)
-- else
-  %pre
-    %p= "#{@user.name} has not friends."
+    %h2 Friends
+    - if @friends.length > 0
+      - @friends.each_with_index do |friend, i|
+        - break if i == 20
+        %pre
+          = link_to friend.name, profile_path(friend.profile_name)
+    - else
+      %pre
+        %p= "#{@user.name} has not friends."
 
-%h2 Favorites Artists
-- if @artists.length > 0
-  - @artists.each_with_index do |artist, i|
-    - break if i == 20
-    %pre
-      = link_to artist.name, artist_path(uri(artist.name))
-- else
-  %pre
-    %p= "#{@user.name} has not added anything yet."
+  .span9
+    .page-header
+      %h1= @user.name
+
+    - if @friend # Show to add friend
+      = form_tag friendships_path, method: :post do |form|
+        = hidden_field_tag(:friend_id, @friend.id)
+        = submit_tag "Add Friend", class: 'btn btn-primary'
+
+    %h2 Favorites Artists
+    - if @artists.length > 0
+      - @artists.each_with_index do |artist, i|
+        - break if i == 20
+        %pre
+          = link_to artist.name, artist_path(uri(artist.name))
+    - else
+      %pre
+        %p= "#{@user.name} has not added anything yet."
