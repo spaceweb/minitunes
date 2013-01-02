@@ -11,11 +11,7 @@ class ProfilesController < ApplicationController
     end
 
     @friends = @user.friends
-
-    relations = Add.find_all_by_user_id(current_user.id)
-    relations.each do |relation|
-      @artists << Artist.find_by_id(relation.artist_id)
-    end
+    @artists = Artist.where id: Add.where(user_id: @user)
    
   rescue ActiveRecord::RecordNotFound
     render file: 'public/404', status: :not_found 
