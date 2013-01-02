@@ -2,7 +2,6 @@ class ProfilesController < ApplicationController
   before_filter :authenticate_user!
 
   def show
-    @artists = []
     @user = User.find_by_profile_name(params[:id])
     raise ActiveRecord::RecordNotFound if @user.nil?
 
@@ -11,10 +10,9 @@ class ProfilesController < ApplicationController
     end
 
     @friends = @user.friends
-
-    relations = Add.find_all_by_user_id(current_user.id)
-    relations.each do |relation|
-      @artists << Artist.find_by_id(relation.artist_id)
+    @artists = Array.new
+    Add.where(user_id: @user).each do |add|
+      @artists << Artist.find_by_id(add.artist_id)
     end
    
   rescue ActiveRecord::RecordNotFound
