@@ -4,20 +4,25 @@ Feature: Testing Similar Artist of Minitunes
   So that I can find similar artists as my search
   I want to include similar artists to my collection
 
-Background:
-  Given I am logged in
-  Given the following Artists exist:
-  | name          | description      | similar       |
-  | Shakira       | colombian singer | Paulina Rubio |
-  | Paulina Rubio | mexican singer   | Shakira       |
-  And I am on the "Shakira" page
+  Background:
+    Given the following Artists exist:
+    | name          | description      |
+    | Shakira       | colombian singer |
+    | Paulina Rubio | mexican singer   |
+
+    Given the following Users exist:
+    | name    | email               | password  | profile_name   |
+    | Charlie | Charlie@Charlie.com | 123456    | CharlieProfile |
+    | Brown   | Brown@Brown.com     | 123456    | BrownProfile   |
+    Given "Shakira" and "Paulina Rubio" are similars
 
 Scenario: Add Artist from similar Artist
+    Given I am logged in as Charlie@Charlie.com
+    Given I am on the "Shakira" page
     Then  I should see "Similar Artists"
-    Then  "Shakira" should be similar to "Paulina Rubio"
     Then  I should see "Paulina Rubio"
     And   I follow "Paulina Rubio"
     Then  I am on the "Paulina Rubio" page
-    Then  I follow "Add Artist"
-    Then  I go to my Profile "robin"
+    Then  I press "Add Artist"
+    Then  I go to my Profile "CharlieProfile"
     And   I should see "Paulina Rubio"
