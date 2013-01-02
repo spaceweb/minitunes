@@ -6,11 +6,16 @@
 %p#description= @artist.description
 
 -if @artist.name
-  = form_tag add_artist_path, method: :post do |form|
-    = hidden_field_tag(:id, @artist.id)
-    = submit_tag "Add Artist", class: 'btn btn-primary'
+  -if @add
+    = form_tag destroy_artist_path, method: :delete do |form| 
+      = hidden_field_tag(:id, @artist.id)
+      = submit_tag "Remove Artist", class: 'btn btn-primary'
+  -else
+    = form_tag add_artist_path, method: :post do |form|
+      = hidden_field_tag(:id, @artist.id)
+      = submit_tag "Add Artist", class: 'btn btn-primary'
   
-  = render 'similar'
+  -#= render 'similar'
 
   %h#reviews_header Number of reviews: #{@num_reviews}
   - @reviews.each do |review|
@@ -18,3 +23,5 @@
     %hr
     = review.comments
   = render 'artist_review_form'
+  
+  

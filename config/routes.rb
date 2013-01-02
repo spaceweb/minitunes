@@ -17,6 +17,7 @@ Minitunes::Application.routes.draw do
 
   post 'friendships/create', to: 'friendships#create', as: :friendships
   post 'add_artist/create', to: 'add_artist#create', as: :add_artist
+  delete 'destroy_artist', to: 'artists#destroy', as: :destroy_artist
 
   get ':id', to: 'profiles#show', as: 'profile'
 
@@ -36,6 +37,7 @@ Minitunes::Application.routes.draw do
 
   get 'artists/:name', to: 'artists#show', as: :artist
   post 'artists/:name', to: 'reviews#create', as: :artist
+  
 
   # map '/' to be a redirect to '/movies'
   root :to => 'index#index'

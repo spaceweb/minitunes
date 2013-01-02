@@ -8,7 +8,8 @@
 
 artists = [{:name => 'Shakira', :description => 'Colombian singer'},
         {:name => 'Paulina Rubio', :description => 'Mexican singer'},
-        {:name => 'Nelly Furtado', :description => 'Canacian singer'},
+        {:name => 'Nelly Furtado', :description => 'Canadian singer'},
+        {:name => 'Jennifer Lopez', :description => 'American singer'}
      ]
 
 users = [{:name => 'Charlie Brown', :email => 'charlie@brown.com', :profile_name => 'charlieprofile', :password => "123456"},
