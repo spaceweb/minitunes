@@ -1,8 +1,7 @@
 -#  This file is app/views/index/index.html.haml
 
-%h1 
-  = @artist.name
-  %hr
+.page-header
+  %h1= @artist.name
 
 .row
   .span3
@@ -15,31 +14,29 @@
         = form_tag add_artist_path, method: :post do |form|
           = hidden_field_tag(:id, @artist.id)
           = submit_tag "Add Artist", class: 'btn btn-primary'
-          
-  .span6
-    %h4 Description
-    %hr
+
+    %h3 Description
     %p#description= @artist.description
-        
-    %h4 Albums
-    %hr
-      -if @albums.length > 0
-        - @albums.each do |album|
-          ="#{album.tracks}." 
-          = link_to album.name
-          %br
+     
+  .span6      
+    %h3 Albums
+    -if @albums.length > 0
+      - @albums.each do |album|
+        ="#{album.tracks}." 
+        = link_to album.name
+        %br
     
   .span3
-    %h4 Similar
-    %hr
-    %p#Pashecu
-      -#= render 'similar'
+    %div{:class=>"well sidebar-nav"}
+      = render 'similar'
   
        
       
-%h2 Comments
-%hr
-%h#reviews_header Number of reviews: #{@num_reviews}
+
+.page-header
+  %h3 Comments (#{@num_reviews})
+
+
 - @reviews.each do |review|
   #review_user= review.user.name
   %pre
