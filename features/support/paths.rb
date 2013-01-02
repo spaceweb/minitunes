@@ -16,9 +16,8 @@ module NavigationHelpers
     when /^the home\s?page$/
       '/'
 
-    #*****************Teneis que cambiar todo sino no puedes diferenciar entre artista y usuario**************** Ahora en la featura the Artist "nombre" page
     when /^the "(.*)" page$/ then
-      "/#{URI.parse(URI.encode($1))}"
+      artist_path($1)
 
     when /^the Login page$/ then
       '/login'
@@ -30,7 +29,7 @@ module NavigationHelpers
       "/artists/#{URI.parse(URI.encode($1))}"
 
     when /^my Profile "(.*)"$/ then
-      "/user/#{$1}"
+      profile_path($1)
 
     when /^the profile page (.*)$/ then
       "/#{$1}"
