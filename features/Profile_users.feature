@@ -5,9 +5,9 @@ Feature: Testing the profiles's users of Minitunes
 
   Background:
     Given the following Artists exist:
-    | name          | description      | similar       |
-    | Shakira       | colombian singer | Paulina Rubio |
-    | Paulina Rubio | mexican singer   | Shakira       |
+    | name          | description      |
+    | Shakira       | colombian singer |
+    | Paulina Rubio | mexican singer   |
 
     Given the following Users exist:
     | name    | email               | password  | profile_name   |
