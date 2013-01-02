@@ -28,7 +28,7 @@ module NavigationHelpers
     when /^the "(.*)" page artist$/ then
       "/artists/#{URI.parse(URI.encode($1))}"
 
-    when /^my Profile "(.*)"$/ then
+    when /^my profile page "(.*)"$/ then
       profile_path($1)
 
     when /^the profile page (.*)$/ then
