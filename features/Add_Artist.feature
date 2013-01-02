@@ -6,8 +6,8 @@ Feature: User can add artist
   
 Background:
   Given the following Artists exist:
-  | name          | description      | similar       |
-  | Shakira       | colombian singer | Paulina Rubio |
+  | name              | description    | 
+  | Gym Class Heroes  | American group | 
  
   Given the following Users exist:
   | name    | email               | password  | profile_name   |
@@ -15,13 +15,13 @@ Background:
 
 Scenario: Add artist on Minitunes with a registered user
     When I sign in as "snoopy@brown.com/234567"
-    And   I visit the "Shakira" page artist
+    And   I visit the "Gym Class Heroes" page artist
     Then  I press "Add Artist"
-    Then  I should be on the "Shakira" page artist
-    Then  I should see "Shakira was successfully added in your collection!"
+    Then  I should be on the "Gym Class Heroes" page artist
+    Then  I should see "Gym Class Heroes was successfully added in your collection!"
 
 Scenario: Add artist on Minitunes with an unregistered user
-    Given I am on the "Shakira" page artist
+    Given I am on the "Gym Class Heroes" page artist
     Then  I press "Add Artist"
     Then  should be on the Login page
 

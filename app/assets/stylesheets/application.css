@@ -45,3 +45,8 @@ hr {
   position: relative;
   top: 1em;
 }
+
+#textareareviews {
+  width: 925px;
+  height:100px
+}
