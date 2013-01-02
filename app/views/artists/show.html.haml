@@ -2,26 +2,48 @@
 
 %h1 
   = @artist.name
+  %hr
 
-%p#description= @artist.description
-
--if @artist.name
-  -if @add
-    = form_tag destroy_artist_path, method: :delete do |form| 
-      = hidden_field_tag(:id, @artist.id)
-      = submit_tag "Remove Artist", class: 'btn btn-primary', :confirm => 'Are you sure?'
-  -else
-    = form_tag add_artist_path, method: :post do |form|
-      = hidden_field_tag(:id, @artist.id)
-      = submit_tag "Add Artist", class: 'btn btn-primary'
-  
-  -#= render 'similar'
-
-  %h#reviews_header Number of reviews: #{@num_reviews}
-  - @reviews.each do |review|
-    #review_user= review.user.name
+.row
+  .span3
+    -if @artist.name
+      -if @add
+        = form_tag destroy_artist_path, method: :delete do |form| 
+          = hidden_field_tag(:id, @artist.id)
+          = submit_tag "Remove Artist", class: 'btn btn-primary', :confirm => 'Are you sure?'
+      -else
+        = form_tag add_artist_path, method: :post do |form|
+          = hidden_field_tag(:id, @artist.id)
+          = submit_tag "Add Artist", class: 'btn btn-primary'
+          
+  .span6
+    %h4 Description
     %hr
+    %p#description= @artist.description
+        
+    %h4 Albums
+    %hr
+      -if @albums.length > 0
+        - @albums.each do |album|
+          ="#{album.tracks}." 
+          = link_to album.name
+          %br
+    
+  .span3
+    %h4 Similar
+    %hr
+    %p#Pashecu
+      -#= render 'similar'
+  
+       
+      
+%h2 Comments
+%hr
+%h#reviews_header Number of reviews: #{@num_reviews}
+- @reviews.each do |review|
+  #review_user= review.user.name
+  %pre
     = review.comments
-  = render 'artist_review_form'
+= render 'artist_review_form'
   
   
