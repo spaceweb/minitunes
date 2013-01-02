@@ -1,4 +1,6 @@
 %h3 Similar Artists
--if @artist.similar
-  %p#similar
-    = link_to @artist.similar, artist_path(@artist.similar)
+- if @artist.artist_similars.length > 0
+  - @artist.artist_similars.each_with_index do |artist, i|
+    - break if i == 20
+    %pre
+      = link_to artist.similar_name, artist_path(uri(artist.similar_name))
