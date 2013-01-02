@@ -6,9 +6,9 @@ Feature: Testing the profiles's users of Minitunes
 
   Background:
     Given the following Artists exist:
-    | name          | description      | similar       |
-    | Shakira       | colombian singer | Paulina Rubio |
-    | Paulina Rubio | mexican singer   | Shakira       |
+    | name          | description      |
+    | Shakira       | colombian singer |
+    | Paulina Rubio | mexican singer   |
 
     Given the following Users exist:
     | name    | email               | password  | profile_name   |
@@ -23,5 +23,5 @@ Scenario: Add friends on Minitunes with a registered user
     Then  I should see "Favorites Artists"
     Then  I press "Add Friend"
     Then  I should see "You are now friends with Charlie"
-    And   I visit my profile page BrownProfile
+    Then  I go to my Profile "CharlieProfile"
     Then  I should see "Charlie"
