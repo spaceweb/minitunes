@@ -12,8 +12,10 @@ class ProfilesController < ApplicationController
       @artists << Artist.find_by_id(add.artist_id)
     end
 
-    if @user != current_user and not @following.include?(current_user)
+    if @user != current_user and not current_user.friends.include?(@user)
       @follow = @user # we can follow the user
+    elsif @user != current_user and current_user.friends.include?(@user)
+      @unfollow = @user # we can unfollow the user
     elsif @artists.length > 0 # User with similar taste
       others = Add.where(artist_id: @artists.sample.id)
       others.each_with_index do |other, i|
