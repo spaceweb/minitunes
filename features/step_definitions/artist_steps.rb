@@ -26,3 +26,11 @@ Given /"(.+)" and "(.+)" are similars/ do |one, two|
                     similar_name: shakira.name, 
                     artist_name: paulina.name)
 end
+
+Given /^the relation "(.+)" and "(.+)"$/ do |one, two|
+   user = User.find_by_name(one)
+   artist = Artist.find_by_name(two)
+   r1 = artist.adds.build
+   user.adds << r1
+end
+  

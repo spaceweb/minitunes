@@ -49,7 +49,6 @@ When /^(?:|I )go to (.+)$/ do |page_name|
   visit path_to(page_name)
 end
 
-#GONZALO
 When /^(?:|I )visit (.+)$/ do |page_name|
   visit path_to(page_name)
 end

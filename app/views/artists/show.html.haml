@@ -7,11 +7,11 @@
   .span3
     -if @artist.name
       -if @add
-        = form_tag destroy_artist_path, method: :delete do |form| 
+        = form_tag destroy_user_artist_path, method: :delete do |form| 
           = hidden_field_tag(:id, @artist.id)
           = submit_tag "Remove Artist", class: 'btn btn-primary', :confirm => 'Are you sure?'
       -else
-        = form_tag add_artist_path, method: :post do |form|
+        = form_tag user_artist_path, method: :post do |form|
           = hidden_field_tag(:id, @artist.id)
           = submit_tag "Add Artist", class: 'btn btn-primary'
 
