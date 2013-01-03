@@ -19,20 +19,20 @@ describe ProfilesController do
 
     it "should render a not found on profile view" do
       get :show, id: "does't exist"
-      assert_response :not_found #It whould fails always
+      assert_response :not_found
     end
 
     it "only shows the correct user's collection of favorites artists" do
       get :show, id: users(:dean).profile_name
-      assigns[:artists].each do |artist| # Bug: have to fail ;)
+      assigns[:artists].each do |artist|
         assert_equal Artist.where(id: Add.where(user_id: users(:dean))).include?(artist)
       end
     end
 
-    it "only shows the correct user's friends" do
+    it "only shows the correct user's following" do
       get :show, id: users(:dean).profile_name
-      assigns[:friends].each do |friend| # Bug: have to fail ;)
-        assert_equal users(:dean).friends.include?(friend)
+      assigns[:following].each do |follow|
+        assert users(:dean).friends.include?(follow)
       end
     end
   end

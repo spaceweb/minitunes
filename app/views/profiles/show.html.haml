@@ -13,6 +13,12 @@
       %pre
         %p= "#{@user.name} has not friends."
 
+    - if @similars.length > 0
+      %h3 Make New Friends
+      - @similars.each_with_index do |similar, i|
+        %pre
+          = link_to similar.name, profile_path(similar.profile_name)
+
   .span9
     .page-header
       %h1= @user.name
