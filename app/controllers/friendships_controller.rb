@@ -7,7 +7,7 @@ class FriendshipsController < ApplicationController
       @friendship = current_user.friendships.new(friend: @friend)
 
       @friendship.save
-      flash[:notice] = "You are now friends with #{@friend.name}"
+      flash[:notice] = "You are now following #{@friend.name}"
       redirect_to profile_path(@friend.profile_name)
     else
       flash[:error] = "Friend is required"
