@@ -14,7 +14,7 @@
         %p= "#{@user.name} is not following anyone."
 
     - if @similars.length > 0
-      %h3 Make New following
+      %h3 Who to follow
       - @similars.each_with_index do |similar, i|
         %pre
           = link_to similar.name, profile_path(similar.profile_name)
