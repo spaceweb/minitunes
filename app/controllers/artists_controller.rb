@@ -7,7 +7,7 @@ class ArtistsController < ApplicationController
     participates.each do |participate|
       @albums << Album.find_by_id(participate.album_id)
     end
-      
+
     if @artist
       if signed_in?
         relations = Add.find_all_by_user_id(current_user.id)
@@ -23,11 +23,21 @@ class ArtistsController < ApplicationController
       @artist = Artist.new
       flash[:notice] = "You search \"#{params[:name]}\" did not match anything on MiniTunes"
     end
-  
+
   end
-  
-  
-  
+
+  def create
+    @artist = Artist.find_by_name(params[:search])
+    if @artist
+      redirect_to artist_path(@artist.name)
+    else
+      @artist_search = Artist.find_in_lastfm(params[:name])
+      artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
+      @artist = Artist.create!(artist)
+      redirect_to artist_path(@artist.name)
+    end
+  end
+
   def destroy
     @artist = Artist.find_by_id(params[:id])
     relation = Add.find_all_by_user_id(current_user.id) & Add.find_all_by_artist_id(@artist.id)
@@ -38,5 +48,5 @@ class ArtistsController < ApplicationController
     flash[:notice] = "#{@artist.name} was successfully deleted"
     redirect_to artist_path(@artist.name)
   end
-  
+
 end
