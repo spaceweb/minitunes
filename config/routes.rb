@@ -16,6 +16,8 @@ Minitunes::Application.routes.draw do
   end
 
   post 'friendships/create', to: 'friendships#create', as: :friendships
+  delete 'friendships/destroy', to: 'friendships#destroy', as: :friendship_destroy
+
   post 'user-artist/create', to: 'user-artist#create', as: :user_artist
   delete 'user-artist/destroy', to: 'user-artist#destroy', as: :destroy_user_artist
 
