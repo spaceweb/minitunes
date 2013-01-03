@@ -27,6 +27,10 @@
       = form_tag friendships_path, method: :post do |form|
         = hidden_field_tag(:friend_id, @follow.id)
         = submit_tag "Follow", class: 'btn btn-primary'
+    - elsif @unfollow # Show to unfollow user
+      = form_tag friendship_destroy_path, method: :delete do |form|
+        = hidden_field_tag(:friend_id, @unfollow.id)
+        = submit_tag "Unfollow", class: 'btn btn-danger'
 
     %h2 Favorites Artists
     - if @artists.length > 0
