@@ -27,7 +27,7 @@ class ArtistsController < ApplicationController
   end
 
   def create
-    @artist = Artist.find_by_name(params[:search])
+    @artist = Artist.find_by_name(params[:name].capitalize)
     if @artist
       redirect_to artist_path(@artist.name)
     else
