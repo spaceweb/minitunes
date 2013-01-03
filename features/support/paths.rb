@@ -32,7 +32,7 @@ module NavigationHelpers
       profile_path($1)
 
     when /^the profile page (.*)$/ then
-      "/#{$1}"
+      profile_path($1)
 
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
