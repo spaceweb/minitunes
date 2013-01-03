@@ -47,7 +47,7 @@ describe FriendshipsController do
 
         it "set the flash success message" do
           assert flash[:notice]
-          assert_equal "You are now friends with #{users(:bilbo).name}", flash[:notice]
+          assert_equal "You are now following #{users(:bilbo).name}", flash[:notice]
         end
       end
     end
