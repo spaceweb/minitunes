@@ -14,7 +14,7 @@ class ProfilesController < ApplicationController
 
     if @user != current_user and not @friends.include?(current_user)
       @friend = @user # we can add as friends
-    else # User with similar taste
+    elsif @artists.length > 0 # User with similar taste
       others = Add.where(artist_id: @artists.sample.id)
       others.each_with_index do |other, i|
         break if i == 10
