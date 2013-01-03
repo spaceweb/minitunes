@@ -19,7 +19,7 @@ Scenario: Add artist on Minitunes with a registered user
     When I press "Add Artist"
     Then I should be on the "Gym Class Heroes" page artist
     And  I should see "Gym Class Heroes was successfully added in your collection!"
-    When I go to my Profile "snoopyprofile"
+    When I go to my profile page "snoopyprofile"
     Then I should see "Gym Class Heroes"
 
 Scenario: Add artist on Minitunes with an unregistered user
@@ -35,6 +35,6 @@ Scenario: Deleted artist on Minitunes with a registered user
   When I press "Remove Artist"
   Then I should be on the "Gym Class Heroes" page artist
   And  I should see "Gym Class Heroes was successfully deleted"
-  When I go to my Profile "snoopyprofile"
+  When I go to my profile page "snoopyprofile"
   Then I should not see "Gym Class Heroes"
 
