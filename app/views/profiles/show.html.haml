@@ -3,18 +3,18 @@
   .span3
     = link_to image_tag(@user.gravatar+"?size=200")
 
-    %h2 Friends
-    - if @friends.length > 0
-      - @friends.each_with_index do |friend, i|
+    %h2 Following
+    - if @following.length > 0
+      - @following.each_with_index do |follow, i|
         - break if i == 20
         %pre
-          = link_to friend.name, profile_path(friend.profile_name)
+          = link_to follow.name, profile_path(follow.profile_name)
     - else
       %pre
-        %p= "#{@user.name} has not friends."
+        %p= "#{@user.name} is not following anyone."
 
     - if @similars.length > 0
-      %h3 Make New Friends
+      %h3 Make New following
       - @similars.each_with_index do |similar, i|
         %pre
           = link_to similar.name, profile_path(similar.profile_name)
@@ -23,10 +23,10 @@
     .page-header
       %h1= @user.name
 
-    - if @friend # Show to add friend
+    - if @follow # Show to follow user
       = form_tag friendships_path, method: :post do |form|
-        = hidden_field_tag(:friend_id, @friend.id)
-        = submit_tag "Add Friend", class: 'btn btn-primary'
+        = hidden_field_tag(:friend_id, @follow.id)
+        = submit_tag "Follow", class: 'btn btn-primary'
 
     %h2 Favorites Artists
     - if @artists.length > 0
