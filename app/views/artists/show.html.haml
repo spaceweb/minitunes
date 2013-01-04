@@ -24,10 +24,14 @@
   .span6      
     %h3 Albums
     -if @albums.length > 0
-      - @albums.each do |album|
-        ="#{album.tracks}." 
-        = link_to album.name
-        %br
+      - @albums.each_with_index do |album, i|
+        .row
+          .span4
+            = "#{i+1}." 
+            = link_to album.name
+          .span1
+            = "Tracks: #{album.tracks}"
+        
     
   .span3
     %div{:class=>"well sidebar-nav"}

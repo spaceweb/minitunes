@@ -31,9 +31,7 @@ class ArtistsController < ApplicationController
   def create
     artist_name = params[:search].split.collect!{|word| word.capitalize}.join(' ')
     @artist = Artist.find_by_name(artist_name) || Artist.find_by_name(artist_name.upcase)
-    if @artist
-      redirect_to artist_path(@artist.name)
-    else
+    if not @artist
       @artist_search = Artist.find_in_lastfm(params[:search])
       artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
       artist[:description] = artist[:description].sub(/<(.*)>/,'')
@@ -42,7 +40,16 @@ class ArtistsController < ApplicationController
         @artist = Artist.create!(artist)
         # Save similars artist on DB
         createSimilar(@artist, @artist_search["similar"]["artist"])
-        redirect_to artist_path(@artist.name)
+        
+        #BUSQUEDA ALBUMS
+        @albums_search = Artist.find_in_album_lastfm(params[:search])
+        #Ni track ni nada, telita la unica forma que veo de sacar los track es haciendo uan peticion de canciones y contarlas
+        @albums_search.each do |album_search|
+          album = Album.create!(:name => album_search["name"])
+          r = album.participates.build
+          @artist.participates << r
+        end   
+        
       else
         flash[:notice] = "You search \"#{params[:search]}\" did not match anything on MiniTunes"
         if current_user
@@ -52,6 +59,9 @@ class ArtistsController < ApplicationController
         end
       end
     end
+    
+  
+    redirect_to artist_path(@artist.name)
 
     rescue Lastfm::ApiError => lastfm_error
       if lastfm_error.message =~ /The artist you supplied could not be found/   
