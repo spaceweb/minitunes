@@ -17,6 +17,8 @@ class ArtistsController < ApplicationController
           end
         end
       end
+      @artist_search = Artist.find_in_lastfm(@artist.name)
+      @artist_image = @artist_search["image"][4]["content"]
       @reviews = @artist.reviews
       @num_reviews = @reviews.length
     else
