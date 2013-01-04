@@ -34,15 +34,21 @@ class ArtistsController < ApplicationController
     else
       @artist_search = Artist.find_in_lastfm(params[:search])
       artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
-      @artist = Artist.create!(artist)
-      redirect_to artist_path(@artist.name)
+      if artist[:description] != {}
+        artist[:description] = artist[:description].split(/<a(.+)href=(.+)rel="nofollow">(.+)<\/a>/).join
+        @artist = Artist.create!(artist) 
+        redirect_to artist_path(@artist.name)
+      else
+        flash[:notice] = "You search \"#{params[:search]}\" did not match anything on MiniTunes"
+        redirect_to root_path
+      end
     end
 
     rescue Lastfm::ApiError => lastfm_error
       if lastfm_error.message =~ /The artist you supplied could not be found/   
-        flash[:warning] = "'#{params[:search]}' was not found in Last.fm"
+        flash[:notice] = "You search \"#{params[:search]}\" did not match anything on MiniTunes"
       elsif lastfm_error.message =~ /Invalid API key - You must be granted a valid key by last.fm/
-        flash[:warning] = "Search not available."
+        flash[:warning] = 'Search not available.'
       else
         flash[:warning] = lastfm_error.message
       end
