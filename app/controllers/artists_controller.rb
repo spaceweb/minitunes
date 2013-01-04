@@ -27,11 +27,12 @@ class ArtistsController < ApplicationController
   end
 
   def create
-    @artist = Artist.find_by_name(params[:name].capitalize)
+    artist_name = params[:search].split.collect!{|word| word.capitalize}.join(' ')
+    @artist = Artist.find_by_name(artist_name)
     if @artist
       redirect_to artist_path(@artist.name)
     else
-      @artist_search = Artist.find_in_lastfm(params[:name])
+      @artist_search = Artist.find_in_lastfm(params[:search])
       artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
       @artist = Artist.create!(artist)
       redirect_to artist_path(@artist.name)

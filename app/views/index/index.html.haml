@@ -1,2 +1,12 @@
 -#  This file is app/views/index/index.html.haml
 %h1 /index
+
+
+
+
+= form_tag new_artist_path, method: :post, do |form| 
+  %center
+    = text_field_tag 'search'
+  %br
+  %center
+    = submit_tag 'Search'
