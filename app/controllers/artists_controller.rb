@@ -28,7 +28,7 @@ class ArtistsController < ApplicationController
 
   def create
     artist_name = params[:search].split.collect!{|word| word.capitalize}.join(' ')
-    @artist = Artist.find_by_name(artist_name)
+    @artist = Artist.find_by_name(artist_name) || Artist.find_by_name(artist_name.upcase)
     if @artist
       redirect_to artist_path(@artist.name)
     else
