@@ -13,8 +13,8 @@
           %a{:href=>"/", :class=>"brand"} Minitunes
 
           -if not @index 
-            %form{:action => '/artists/search', :method => 'POST', :class=>"navbar-search pull-left"}
-              %input{:type=>"text", :name => 'search', :class=>"search-query", :placeholder=>"Search"}
+            = form_tag new_artist_path, :class => "navbar-search pull-left" do
+              = text_field_tag 'search', value = nil, options = {:type => 'text', :class=>"search-query", :placeholder=>"Search"}
           %ul{:class=>"nav pull-right"}
             - if user_signed_in?
               %li= link_to current_user.name, "/#{current_user.profile_name}"
