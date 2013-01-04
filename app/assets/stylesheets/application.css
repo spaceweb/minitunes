@@ -50,3 +50,16 @@ hr {
   width: 925px;
   height:100px
 }
+
+#textareaindex {
+  vertical-align: middle;
+  width: 600px;
+  height:20px;
+  position: relative;
+  top: -8em;
+}
+
+#buttomindex {
+  position: relative;
+  top: -6em;
+}

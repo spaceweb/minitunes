@@ -1,12 +1,10 @@
 -#  This file is app/views/index/index.html.haml
-%h1 /index
+%center
+  = image_tag("minitunes2.png")
 
-
-
-
-= form_tag new_artist_path, method: :post, do |form| 
+= form_tag new_artist_path do
   %center
-    = text_field_tag 'search'
+    = text_field_tag 'search', value = nil, options = {:placeholder => "Enter search term...", :class => "round shadow", :id => 'textareaindex'}
   %br
   %center
-    = submit_tag 'Search'
+    = submit_tag 'Search', options ={class: "btn btn-primary", :id => 'buttomindex'}
