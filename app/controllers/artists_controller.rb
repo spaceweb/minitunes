@@ -35,21 +35,22 @@ class ArtistsController < ApplicationController
       @artist_search = Artist.find_in_lastfm(params[:search])
       artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
 
-      if artist[:description] != {} and artist[:description] != ''
+      if artist[:description] != {} 
         artist[:description] = artist[:description].sub(/<(.*)>/,'')
-        @artist = Artist.create!(artist)
-        # Save similars artist on DB
-        createSimilar(@artist, @artist_search["similar"]["artist"])
+        if artist[:description] != ''
+          @artist = Artist.create!(artist)
+          # Save similars artist on DB
+          createSimilar(@artist, @artist_search["similar"]["artist"])
 
-        #BUSQUEDA ALBUMS
-        @albums_search = Artist.find_in_album_lastfm(params[:search])
-        #Ni track ni nada, telita la unica forma que veo de sacar los track es haciendo uan peticion de canciones y contarlas
-        @albums_search.each do |album_search|
-          album = Album.create!(:name => album_search["name"])
-          r = album.participates.build
-          @artist.participates << r
+          #BUSQUEDA ALBUMS
+          @albums_search = Artist.find_in_album_lastfm(params[:search])
+          #Ni track ni nada, telita la unica forma que veo de sacar los track es haciendo uan peticion de canciones y contarlas
+          @albums_search.each do |album_search|
+            album = Album.create!(:name => album_search["name"])
+            r = album.participates.build
+            @artist.participates << r
+          end
         end
-        redirect_to artist_path(@artist.name)
       else
         flash[:notice] = "You search \"#{params[:search]}\" did not match anything on MiniTunes"
         if current_user
@@ -58,9 +59,8 @@ class ArtistsController < ApplicationController
           redirect_to root_path
         end
       end
-    else
-      redirect_to artist_path(@artist.name)
     end
+    redirect_to artist_path(@artist.name)
 
     rescue Lastfm::ApiError => lastfm_error
       if lastfm_error.message =~ /The artist you supplied could not be found/   
