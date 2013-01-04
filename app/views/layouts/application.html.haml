@@ -11,8 +11,10 @@
       %div{:class=>"navbar-inner"}
         %div{:class=>"container"}
           %a{:href=>"/", :class=>"brand"} Minitunes
-          %form{:class=>"navbar-search pull-left"}
-            %input{:type=>"text", :class=>"search-query", :placeholder=>"Search"}
+
+          -if not @index 
+            %form{:class=>"navbar-search pull-left"}
+              %input{:type=>"text", :class=>"search-query", :placeholder=>"Search"}
           %ul{:class=>"nav pull-right"}
             - if user_signed_in?
               %li= link_to current_user.name, "/#{current_user.profile_name}"
