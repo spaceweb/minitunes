@@ -77,6 +77,11 @@ class ArtistsController < ApplicationController
       end
   end
 
+  def search_artist
+    self.create
+    return
+  end
+
   protected
   def createSimilar(artist, similars) 
     similars.each do |similar|

@@ -3,4 +3,4 @@
   - @artist.artist_similars.each_with_index do |artist, i|
     - break if i == 20
     %pre
-      = link_to artist.similar_name, artist_path(uri(artist.similar_name))
+      = link_to artist.similar_name, search_artist_path(artist.similar_name)
