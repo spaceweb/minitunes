@@ -35,10 +35,13 @@ class ArtistsController < ApplicationController
       redirect_to artist_path(@artist.name)
     else
       @artist_search = Artist.find_in_lastfm(params[:search])
+
       artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
       if artist[:description] != {}
         artist[:description] = artist[:description].split(/<a(.+)href=(.+)rel="nofollow">(.+)<\/a>/).join
-        @artist = Artist.create!(artist) 
+        @artist = Artist.create!(artist)
+        # Save similars artist on DB
+        createSimilar(@artist, @artist_search["similar"]["artist"])
         redirect_to artist_path(@artist.name)
       else
         flash[:notice] = "You search \"#{params[:search]}\" did not match anything on MiniTunes"
@@ -57,6 +60,14 @@ class ArtistsController < ApplicationController
       redirect_to root_path
   end
 
-  
-
+  protected
+  def createSimilar(artist, similars) 
+    similars.each do |similar|
+      if similar.has_key?("name")
+        ArtistSimilar.create(artist_id: artist.id,
+                  similar_name: similar["name"],
+                  artist_name: artist.name)
+      end
+    end
+  end
 end
