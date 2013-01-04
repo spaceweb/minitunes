@@ -23,7 +23,7 @@ class ArtistsController < ApplicationController
       @num_reviews = @reviews.length
     else
       @artist = Artist.new
-      flash[:notice] = "You search \"#{params[:name]}\" did not match anything on MiniTunes"
+      flash[:notice] = "You search '#{params[:name]}' did not match anything on MiniTunes"
     end
 
   end
@@ -52,7 +52,7 @@ class ArtistsController < ApplicationController
           end
         end
       else
-        flash[:notice] = "You search \"#{params[:search]}\" did not match anything on MiniTunes"
+        flash[:notice] = "You search '#{params[:search]}' did not match anything on MiniTunes"
         if current_user
           redirect_to profile_path(current_user.profile_name)
         else
@@ -64,7 +64,7 @@ class ArtistsController < ApplicationController
 
     rescue Lastfm::ApiError => lastfm_error
       if lastfm_error.message =~ /The artist you supplied could not be found/   
-        flash[:notice] = "You search \"#{params[:search]}\" did not match anything on MiniTunes"
+        flash[:notice] = "You search '#{params[:search]}' did not match anything on MiniTunes"
       elsif lastfm_error.message =~ /Invalid API key - You must be granted a valid key by last.fm/
         flash[:warning] = 'Search not available.'
       else
