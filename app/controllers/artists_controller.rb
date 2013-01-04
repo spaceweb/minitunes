@@ -37,6 +37,16 @@ class ArtistsController < ApplicationController
       @artist = Artist.create!(artist)
       redirect_to artist_path(@artist.name)
     end
+
+    rescue Lastfm::ApiError => lastfm_error
+      if lastfm_error.message =~ /The artist you supplied could not be found/   
+        flash[:warning] = "'#{params[:search]}' was not found in Last.fm"
+      elsif lastfm_error.message =~ /Invalid API key - You must be granted a valid key by last.fm/
+        flash[:warning] = "Search not available."
+      else
+        flash[:warning] = lastfm_error.message
+      end
+      redirect_to root_path
   end
 
   
