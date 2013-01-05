@@ -58,9 +58,11 @@ ActiveRecord::Schema.define(:version => 20121231182050) do
   end
 
   create_table "reviews", :force => true do |t|
-    t.text    "comments"
-    t.integer "user_id"
-    t.integer "artist_id"
+    t.text     "comments"
+    t.integer  "user_id"
+    t.integer  "artist_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "songs", :force => true do |t|
