@@ -44,11 +44,12 @@ class ArtistsController < ApplicationController
 
           #BUSQUEDA ALBUMS
           @albums_search = Artist.find_in_album_lastfm(params[:search])
-          #Ni track ni nada, telita la unica forma que veo de sacar los track es haciendo uan peticion de canciones y contarlas
-          @albums_search.each do |album_search|
-            album = Album.create!(:name => album_search["name"])
-            r = album.participates.build
-            @artist.participates << r
+          if @albums_search
+            @albums_search.each do |album_search|
+              album = Album.create!(:name => album_search["name"])
+              r = album.participates.build
+              @artist.participates << r
+            end
           end
         end
       else
