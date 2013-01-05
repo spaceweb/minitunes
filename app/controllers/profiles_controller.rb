@@ -17,13 +17,19 @@ class ProfilesController < ApplicationController
     elsif @user != current_user and current_user.friends.include?(@user)
       @unfollow = @user # we can unfollow the user
     elsif @artists.length > 0 # User with similar taste
-      others = Add.where(artist_id: @artists.sample.id)
-      others.each_with_index do |other, i|
-        break if i == 10
-        similar = User.find_by_id(other.user_id)
-        if @user.id != other.user_id and not @following.include?(similar)
-          @similars << similar
+      artists_samples = @artists.sample 10
+      artists_samples.each do |sample| # 10 times max
+
+        adds = Add.where(artist_id: sample.id).sample 10
+        adds.each do |add|
+          similar = User.find_by_id(add.user_id)
+          if @user != similar and not @following.include?(similar)
+            @similars << similar
+          end
         end
+        @similars.uniq! # Make sure there are not repeated users
+        @similars = @similars.sample(10) # Only show 10 users
+
       end
     end
    
