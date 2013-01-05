@@ -48,9 +48,8 @@
     .span1= image_tag review.user.gravatar
     .span7
       %strong= link_to review.user.name, profile_path(review.user.profile_name)
-      %strong= '-'
-      %strong= review.created_at
       %p= review.comments
+      .text-info= time_ago_in_words(review.created_at) + " ago"
       %br
 = render 'artist_review_form'
 
