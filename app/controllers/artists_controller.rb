@@ -29,16 +29,21 @@ class ArtistsController < ApplicationController
   end
 
   def create
+    if !params[:search]
+      raise(Lastfm::ApiError.new("The artist you supplied could not be found"))
+    end
+
     artist_name = params[:search].split.collect!{|word| word.capitalize}.join(' ')
     @artist = Artist.find_by_name(artist_name) || Artist.find_by_name(artist_name.upcase)
     if not @artist
-      @artist_search = Artist.find_in_lastfm(params[:search])
-      artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
 
-      if artist[:description] != {} 
+      @artist_search = Artist.find_in_lastfm(params[:search])
+      if @artist_search and @artist_search["bio"]["summary"] != {} 
+        artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
         artist[:description] = artist[:description].sub(/<(.*)>/,'')
-        if artist[:description] != ''
-          @artist = Artist.create!(artist)
+        
+        @artist = Artist.create!(artist) if artist[:description] != ''
+        if @artist
           # Save similars artist on DB
           createSimilar(@artist, @artist_search["similar"]["artist"])
 
@@ -52,7 +57,8 @@ class ArtistsController < ApplicationController
             end
           end
         end
-      else
+      end
+      if !@artist or !@artist_search 
         flash[:notice] = "You search '#{params[:search]}' did not match anything on MiniTunes"
         if current_user
           redirect_to profile_path(current_user.profile_name)
@@ -61,7 +67,7 @@ class ArtistsController < ApplicationController
         end
       end
     end
-    redirect_to artist_path(@artist.name)
+    redirect_to artist_path(@artist.name) if @artist
 
     rescue Lastfm::ApiError => lastfm_error
       if lastfm_error.message =~ /The artist you supplied could not be found/   
