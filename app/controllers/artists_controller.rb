@@ -50,8 +50,14 @@ class ArtistsController < ApplicationController
           if @albums_search
             @albums_search.each do |album_search|
               a = Artist.find_album_in_lastfm(params[:search], album_search["name"])
-              tracks = a["tracks"]["track"].length
-              album = Album.create!(:name => a["name"], :tracks => tracks, :release_date => a["releasedate"])
+              tracks = a["tracks"]["track"]
+              if not tracks.kind_of?(Array)
+                @tracks = Array.new
+                @tracks << tracks
+              else
+                @tracks = tracks
+              end
+              album = Album.create!(:name => a["name"], :tracks => @tracks.length, :release_date => a["releasedate"])
               r = album.participates.build
               @artist.participates << r
             end
