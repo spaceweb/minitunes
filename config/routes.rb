@@ -41,6 +41,8 @@ Minitunes::Application.routes.draw do
   post 'artists/:name/reviews/create', to: 'reviews#create', as: :reviews
   post 'artists/search', to: 'artists#create', as: :new_artist
   get 'artists/search/:search', to: 'artists#search_artist', as: :search_artist
+  get 'artists/:name/albums/:title', to: 'albums#show', as: :album
+  get 'artists/:name/albums/:title/create', to: 'albums#create', as: :artist_album
 
   # map '/' to be a redirect to '/movies'
   root :to => 'index#index'
