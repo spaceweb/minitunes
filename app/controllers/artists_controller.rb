@@ -36,22 +36,22 @@ class ArtistsController < ApplicationController
     artist_name = params[:search].split.collect!{|word| word.capitalize}.join(' ')
     @artist = Artist.find_by_name(artist_name) || Artist.find_by_name(artist_name.upcase)
     if not @artist
-
       @artist_search = Artist.find_in_lastfm(params[:search])
-      if @artist_search and @artist_search["bio"]["summary"] != {} 
+      if @artist_search and @artist_search["bio"]["summary"] != {}
         artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
         artist[:description] = artist[:description].sub(/<(.*)>/,'')
-        
         @artist = Artist.create!(artist) if artist[:description] != ''
         if @artist
           # Save similars artist on DB
           createSimilar(@artist, @artist_search["similar"]["artist"])
 
           #BUSQUEDA ALBUMS
-          @albums_search = Artist.find_in_album_lastfm(params[:search])
+          @albums_search = Artist.find_top_albums_in_lastfm(params[:search])
           if @albums_search
             @albums_search.each do |album_search|
-              album = Album.create!(:name => album_search["name"])
+              a = Artist.find_album_in_lastfm(params[:search], album_search["name"])
+              tracks = a["tracks"]["track"].length
+              album = Album.create!(:name => a["name"], :tracks => tracks, :release_date => a["releasedate"])
               r = album.participates.build
               @artist.participates << r
             end

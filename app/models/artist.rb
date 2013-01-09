@@ -23,10 +23,15 @@ class Artist < ActiveRecord::Base
     lastfm = Lastfm.new(self.api_key, self.api_secret)
     lastfm.artist.get_info(:artist => string)
   end
-  
-  def self.find_in_album_lastfm(string)
+
+  def self.find_top_albums_in_lastfm(string)
     lastfm = Lastfm.new(self.api_key, self.api_secret)
     lastfm.artist.get_top_albums(:artist => string)
+  end
+
+  def self.find_album_in_lastfm(name, title)
+    lastfm = Lastfm.new(self.api_key, self.api_secret)
+    lastfm.album.get_info(:artist => name, :album => title)
   end
 
 end
