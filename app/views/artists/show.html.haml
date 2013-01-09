@@ -20,25 +20,19 @@
 
     %h3 Description
     %p#description= @artist.description
-     
-  .span6      
+
+  .span6
     %h3 Albums
     -if @albums.length > 0
       - @albums.each_with_index do |album, i|
         .row
           .span4
             = "#{i+1}." 
-            = link_to album.name
-          .span1
-            = "Tracks: #{album.tracks}"
-        
-    
+            = link_to album.name, artist_album_path(@artist.name, album.name)
+
   .span3
     %div{:class=>"well sidebar-nav"}
       = render 'similar'
-  
-       
-      
 
 .page-header
   %h3 Comments (#{@num_reviews})
@@ -52,6 +46,3 @@
       .text-info= time_ago_in_words(review.created_at) + " ago"
       %br
 = render 'artist_review_form'
-
-  
-  
