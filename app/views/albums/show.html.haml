@@ -1,0 +1,31 @@
+.page-header
+  %h1= link_to @artist.name, artist_path(@artist.name)
+
+.row
+  .span3
+    = link_to image_tag(@album_image)
+
+  .span6
+    %h2= @album.name
+
+    -if @album.release_date
+      %h4 Release date
+      = "#{@album.release_date.strftime("%d %b %Y")}"
+
+    %h4 Running length
+    = "#{@album.tracks} tracks"
+
+%br
+
+%table{:class => "table table-striped"}
+  %thead
+    %tr
+      %th
+      %th Track
+      %th Duration
+  %tbody
+    - @songs.each do |song|
+      %tr
+        %td= song.track
+        %td= song.name
+        %td= Time.at(song.duration).utc.strftime("%M:%S")
