@@ -24,8 +24,6 @@ class AlbumsController < ApplicationController
       else
         @songs = @songs_search
       end
-      @album.tracks = @songs.length
-      @album.save!
       @songs.each do |s|
         song = Song.create!(:name => s["name"], :track => s["rank"].to_i, :duration => s["duration"])
         c = song.contains.build
