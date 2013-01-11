@@ -26,7 +26,7 @@
     -if @albums.length > 0
       - @albums.each_with_index do |album, i|
         .row
-          .span4
+          .span6
             = "#{i+1}." 
             = link_to album.name, artist_album_path(@artist.name, album.name)
 
