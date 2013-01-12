@@ -1,23 +1,36 @@
 
 .row
   .span3
-    = link_to image_tag(@user.gravatar+"?size=200")
+    = link_to image_tag(@user.gravatar+"?size=220")
 
-    %h2 Following
+    %div{:class=>"navbar navbar-inverse"}
+    %div{:class=>"navbar"}
+      .navbar-inner
+        %a{:class=>"brand", :href=>followings_path(@user.profile_name)}= "Following (#{@following.length})"
     - if @following.length > 0
       - @following.each_with_index do |follow, i|
         - break if i == 20
-        %pre
-          = link_to follow.name, profile_path(follow.profile_name)
+        .row
+          .span1= link_to image_tag(follow.gravatar+"?size=24"), profile_path(follow.profile_name)
+          %strong= link_to follow.name, profile_path(follow.profile_name)
+        %br
     - else
       %pre
         %p= "#{@user.name} is not following anyone."
 
+    %div{:class=>"navbar"}
+      .navbar-inner
+        %a{:class=>"brand", :href=>followers_path(@user.profile_name)}= "Followers (#{@followers_length})"
+
     - if @similars.length > 0
-      %h3 Who to follow
+      .navbar
+        .navbar-inner
+          .brand Who to follow
       - @similars.each_with_index do |similar, i|
-        %pre
-          = link_to similar.name, profile_path(similar.profile_name)
+        .row
+          .span1= link_to image_tag(similar.gravatar+"?size=24"), profile_path(similar.profile_name)
+          %strong= link_to similar.name, profile_path(similar.profile_name)
+        %br
 
   .span9
     .page-header
