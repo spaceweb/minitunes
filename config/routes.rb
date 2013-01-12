@@ -23,6 +23,7 @@ Minitunes::Application.routes.draw do
 
   get ':id', to: 'profiles#show', as: 'profile'
   get ':id/followings', to: 'profiles#followings', as: :followings
+  get ':id/followers', to: 'profiles#followers', as: :followers
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
