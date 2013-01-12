@@ -25,6 +25,7 @@ class AlbumsController < ApplicationController
         @songs = @songs_search
       end
       @songs.each do |s|
+        link = Album.find_in_youtube(@artist.name, s["name"])
         song = Song.create!(:name => s["name"], :track => s["rank"].to_i, :duration => s["duration"])
         c = song.contains.build
         @album.contains << c

@@ -19,5 +19,9 @@ class Album < ActiveRecord::Base
     lastfm.album.get_info(:artist => name, :album => title)
   end
 
+  def self.find_in_youtube(name, title)
+    YoutubeSearch.search(name + ' ' + title).first['video_id']
+  end
+
 end
 
