@@ -7,6 +7,7 @@ class ProfilesController < ApplicationController
     raise ActiveRecord::RecordNotFound if @user.nil?
 
     @following = @user.friends
+    @followers_length = (Friendship.where friend_id: @user.id).length
     @artists = Array.new
     Add.where(user_id: @user).each do |add|
       @artists << Artist.find_by_id(add.artist_id)
@@ -48,7 +49,12 @@ class ProfilesController < ApplicationController
 
   def followers
     @user = User.find_by_profile_name(params[:id])
-    @followers = Friendship.where friend_id: "@user.id"
+    @followers = Array.new
+    friendships = Friendship.where friend_id: @user.id
+    friendships.each do |friend|
+      @followers << User.find_by_id(friend.user_id)
+    end
+
     raise ActiveRecord::RecordNotFound if @user.nil?
   
   rescue ActiveRecord::RecordNotFound
