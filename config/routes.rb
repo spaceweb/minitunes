@@ -43,6 +43,7 @@ Minitunes::Application.routes.draw do
   get 'artists/search/:search', to: 'artists#search_artist', as: :search_artist
   get 'artists/:name/albums/:title', to: 'albums#show', as: :album
   get 'artists/:name/albums/:title/create', to: 'albums#create', as: :artist_album
+  get 'artists/:name/albums/:title/:song', to: 'songs#show', as: :song
 
   # map '/' to be a redirect to '/movies'
   root :to => 'index#index'
