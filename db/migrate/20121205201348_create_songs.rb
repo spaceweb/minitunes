@@ -4,6 +4,7 @@ class CreateSongs < ActiveRecord::Migration
       t.string 'name'
       t.integer 'track'
       t.integer 'duration'
+      t.string 'link'
     end
   end
 
