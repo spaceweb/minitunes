@@ -5,7 +5,7 @@
   .span3
     = link_to image_tag(@album_image)
 
-  .span6
+  .span3
     %h2= @album.name
 
     -if @album.release_date
@@ -15,17 +15,23 @@
     %h4 Running length
     = "#{@album.tracks} tracks"
 
+  .span6
+    %iframe#player{:allowfullscreen => "", :frameborder => "0", :height => "243",
+        :src => "http://www.youtube.com/embed/#?autoplay=1", :width => "417"}
+
 %br
 
-%table{:class => "table table-striped"}
+%table#songs{:class => "table table-striped"}
   %thead
     %tr
       %th
       %th Track
       %th Duration
+      %th
   %tbody
     - @songs.each do |song|
       %tr
         %td= song.track
         %td= song.name
         %td= Time.at(song.duration).utc.strftime("%M:%S")
+        %td= link_to "Play", song_path(@artist.name, @album.name, song.link)
