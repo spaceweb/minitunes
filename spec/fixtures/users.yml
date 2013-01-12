@@ -1,4 +1,5 @@
 charlie:
+  id: 1
   name: "charlie"
   email: "charlie@brown.com"
   profile_name: "charlie_profile"

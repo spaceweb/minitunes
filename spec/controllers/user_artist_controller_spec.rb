@@ -4,9 +4,11 @@ describe UserArtistController do
   include Devise::TestHelpers
   fixtures :artists
   fixtures :users
+  fixtures :adds
   before :each do
   @fake_shakira = artists(:shakira)
   @fake_charlie = users(:charlie)
+  @fake_relation = adds(:relation)
   end
   describe "#create" do
       
@@ -56,11 +58,11 @@ describe UserArtistController do
       end
  
       it "seek the relationship we are interested and assign a variable -> relation" do
-        assert_equal @fake_relation, assigns(Add.find_all_by_user_id(@fake_charlie.id) & Add.find_all_by_artist_id(@fake_shakira.id))
+        assert_equal @fake_relation1, assigns(Add.find_all_by_user_id(@fake_charlie.id) & Add.find_all_by_artist_id(@fake_shakira.id))
       end
   
       it "call but this relation to method destroy" do
-      	 @fake_relation.stub(:destroy)
+        @fake_relation.stub(:destroy).and_return(true)
       end
     
       it "redirect to the artist page" do
