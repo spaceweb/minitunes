@@ -5,11 +5,9 @@ gem 'rails', '3.2.8'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
 group :development, :test do
   gem 'sqlite3'
   gem 'debugger'
-  
 end
 
 group :production do
@@ -31,7 +29,6 @@ gem 'jquery-rails'
 gem 'haml'
 gem 'devise'
 
-
 group :test do
   gem 'rspec-rails'
   gem 'ZenTest' # autotest
@@ -43,4 +40,8 @@ group :test do
   gem 'launchy'          # a useful debugging aid for user stories
 end
 
+# Gem for search in LastFM
 gem "lastfm", "~> 1.13.1"
+
+# Gem for search in YouTube
+gem 'youtube_search'
