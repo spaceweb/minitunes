@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(:version => 20121231182050) do
     t.string  "name"
     t.integer "track"
     t.integer "duration"
+    t.string  "link"
   end
 
   create_table "users", :force => true do |t|
