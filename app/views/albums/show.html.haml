@@ -34,4 +34,4 @@
         %td= song.track
         %td= song.name
         %td= Time.at(song.duration).utc.strftime("%M:%S")
-        %td= link_to "Play", song_path(@artist.name, @album.name, song.link)
+        %td= link_to (image_tag ("play_icon.png")), song_path(@artist.name, @album.name, song.link)
