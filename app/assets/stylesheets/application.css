@@ -63,3 +63,13 @@ hr {
   position: relative;
   top: -6em;
 }
+
+#videoSong {
+  padding: 2ex;
+  position: absolute;
+}
+
+#player {
+  position: absolute;
+  top: 22ex;
+}
