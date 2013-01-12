@@ -41,6 +41,15 @@ class ProfilesController < ApplicationController
     @user = User.find_by_profile_name(params[:id])
     @following = @user.friends
     raise ActiveRecord::RecordNotFound if @user.nil?
+
+  rescue ActiveRecord::RecordNotFound
+    render file: 'public/404', status: :not_found 
+  end
+
+  def followers
+    @user = User.find_by_profile_name(params[:id])
+    @followers = Friendship.where friend_id: "@user.id"
+    raise ActiveRecord::RecordNotFound if @user.nil?
   
   rescue ActiveRecord::RecordNotFound
     render file: 'public/404', status: :not_found 
