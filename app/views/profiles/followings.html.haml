@@ -1,0 +1,20 @@
+.row
+  .span3
+    = link_to image_tag(@user.gravatar+"?size=200")
+
+  .span9
+    %h2 Following
+    - if @following.length > 0
+      %table{:class => "table table-hover"}
+        %tbody
+          - @following.each do |follow|
+            %tr
+              %td= link_to image_tag(follow.gravatar+"?size=48")
+              %td= link_to follow.name, profile_path(follow.profile_name)
+              %td
+                = form_tag friendship_destroy_path, method: :delete do |form|
+                  = hidden_field_tag(:friend_id, follow.id)
+                  = submit_tag "Unfollow", class: 'btn btn-danger'
+    - else
+      %pre
+        %p= "#{@user.name} is not following anyone."
