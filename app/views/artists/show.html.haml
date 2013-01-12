@@ -23,12 +23,13 @@
 
   .span6
     %h3 Albums
-    -if @albums.length > 0
-      - @albums.each_with_index do |album, i|
-        .row
-          .span6
-            = "#{i+1}." 
-            = link_to album.name, artist_album_path(@artist.name, album.name)
+    %table#albums
+      -if @albums.length > 0
+        %tbody
+          - @albums.each_with_index do |album, i|
+            %tr
+              %td= "#{i+1}."
+              %td= link_to album.name, artist_album_path(@artist.name, album.name)
 
   .span3
     %div{:class=>"well sidebar-nav"}

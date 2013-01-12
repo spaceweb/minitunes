@@ -73,3 +73,8 @@ hr {
   position: absolute;
   top: 22ex;
 }
+
+#filter {
+  width: 460px;
+  height:20px;
+}
