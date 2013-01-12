@@ -22,6 +22,7 @@ Minitunes::Application.routes.draw do
   delete 'user_artist/destroy', to: 'user_artist#destroy', as: :destroy_user_artist
 
   get ':id', to: 'profiles#show', as: 'profile'
+  get ':id/followings', to: 'profiles#followings', as: :followings
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
