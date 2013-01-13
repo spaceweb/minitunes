@@ -18,7 +18,7 @@ Scenario: Add comments on Minitunes with a registered user
   When I sign in as "Charlie@Charlie.com/123456"
   And I go to the "Melendi" page artist
   Then I should see "Add your comment"
-  Then I fill in "Add your comment" with "This is a comment"
+  Then I fill in "textareareviews" with "This is a comment"
   And I press "Create Comment"
   Then I should be on the "Melendi" page artist
   Then I should see "This is a comment"
@@ -26,6 +26,6 @@ Scenario: Add comments on Minitunes with a registered user
 Scenario: Try to comment on the website of an artist when not registered
   When I go to the "Melendi" page artist
   Then I should see "Add your comment"
-  Then I fill in "Add your comment" with "This is a comment"
+  Then I fill in "textareareviews" with "This is a comment"
   And I press "Create Comment" 
   Then I should be on the Login page
