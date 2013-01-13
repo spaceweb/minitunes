@@ -1,0 +1,9 @@
+carlota:
+  id: 1
+  name: "carlota"
+  tracks: 4
+
+loba:
+  name: "loba"
+  tracks: 16
+
