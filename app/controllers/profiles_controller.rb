@@ -1,4 +1,5 @@
 class ProfilesController < ApplicationController
+  include ProfilesHelper
   before_filter :authenticate_user!
 
   def show
@@ -21,15 +22,21 @@ class ProfilesController < ApplicationController
       artists_samples = @artists.sample 10
       artists_samples.each do |sample| # 10 times max
 
-        adds = Add.where(artist_id: sample.id).sample 10
+        adds = Add.where(artist_id: sample.id).sample 100
         adds.each do |add|
           similar = User.find_by_id(add.user_id)
           if @user != similar and not @following.include?(similar)
             @similars << similar
           end
         end
-        @similars.uniq! # Make sure there are not repeated users
-        @similars = @similars.sample(10) # Only show 10 users
+        rep = repeated(@similars)
+        if rep.length > 5
+          @similars = rep.sample 5
+        elsif rep.length < 1
+            @similars = @similars.sample 5
+        else
+          @similars = rep
+        end
 
       end
     end
