@@ -45,3 +45,6 @@ gem "lastfm", "~> 1.13.1"
 
 # Gem for search in YouTube
 gem 'youtube_search'
+
+# Simple form style
+gem 'simple_form'
