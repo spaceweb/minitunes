@@ -7,6 +7,7 @@ class FriendshipsController < ApplicationController
       @friendship = current_user.friendships.new(friend: @friend)
 
       @friendship.save
+      render :text => params[:friend_id] and return if request.xhr?
       flash[:notice] = "You are now following #{@friend.name}"
       redirect_to profile_path(@friend.profile_name)
     else
@@ -21,6 +22,7 @@ class FriendshipsController < ApplicationController
       @friendship = current_user.friendships.find_by_friend_id(@friend.id)
 
       @friendship.destroy
+      render :text => params[:friend_id] and return if request.xhr?
       flash[:notice] = "You are not following #{@friend.name}"
       redirect_to profile_path(@friend.profile_name)
     else
