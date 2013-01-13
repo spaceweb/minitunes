@@ -5,6 +5,7 @@ class UserArtistController < ApplicationController
     @artist = Artist.find_by_id(params[:id])
     relation = @artist.adds.build
     current_user.adds << relation
+    render :text => params[:id] and return if request.xhr?
     flash[:notice] = "#{@artist.name} was successfully added in your collection!"
     redirect_to artist_path(@artist.name)
   end
@@ -17,6 +18,7 @@ class UserArtistController < ApplicationController
     relation.each do |r|
       r.destroy
     end
+    render :text => params[:id] and return if request.xhr?
     flash[:notice] = "#{@artist.name} was successfully deleted"
     redirect_to artist_path(@artist.name)
   end
