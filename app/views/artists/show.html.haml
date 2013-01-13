@@ -12,7 +12,7 @@
       -if @add
         = form_tag destroy_user_artist_path, method: :delete do |form| 
           = hidden_field_tag(:id, @artist.id)
-          = submit_tag "Remove Artist", class: 'btn btn-primary', :confirm => 'Are you sure?'
+          = submit_tag "Remove Artist", class: 'btn btn-danger', :confirm => 'Are you sure?'
       -else
         = form_tag user_artist_path, method: :post do |form|
           = hidden_field_tag(:id, @artist.id)
