@@ -24,5 +24,5 @@ Scenario: Add Artist from similar Artist
     And   I follow "Paulina Rubio"
     Then  I am on the "Paulina Rubio" page
     Then  I press "Add Artist"
-    Then  I go to my Profile "CharlieProfile"
+    Then  I go to my profile page CharlieProfile
     And   I should see "Paulina Rubio"
