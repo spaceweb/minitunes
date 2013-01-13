@@ -23,8 +23,8 @@
 
   .span6
     %h3 Albums
-    %table#albums
-      -if @albums.length > 0
+    -if @albums.length > 0
+      %table#albums
         %tbody
           - @albums.each_with_index do |album, i|
             %tr
