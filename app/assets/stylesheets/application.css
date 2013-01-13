@@ -75,6 +75,6 @@ hr {
 }
 
 #filter_albums {
-  width: 460px;
-  height:26px;
+  float: right; 
+  
 }

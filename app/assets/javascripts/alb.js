@@ -9,7 +9,7 @@ FILTER = {
       $('#albums tbody tr').each(FILTER.seeLess);
     },
     seeLess: function () {
-      if (! /^(\d|10)\.$/i.test($(this).find('td:nth-child(1)').text())) {
+      if (! /^(\d|1\d|20)\.$/i.test($(this).find('td:nth-child(1)').text())) {
         $(this).hide();
         $('#filter_albums').replaceWith('<input type="button" id="filter_albums" value="See more" class= "btn btn-primary" onclick="FILTER.seeMore()"/>');
       }
