@@ -21,6 +21,7 @@ class ArtistsController < ApplicationController
       @artist_image = @artist_search["image"][4]["content"]
       @reviews = @artist.reviews
       @num_reviews = @reviews.length
+      render :partial => 'show_reviews', :object => @reviews and return if request.xhr?
     else
       @artist = Artist.new
       flash[:notice] = "You search '#{params[:name]}' did not match anything on MiniTunes"
