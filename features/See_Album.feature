@@ -11,12 +11,12 @@ Background:
   | Shakira       | colobiam singer |
 
   Given the following Albums exist:
-  | name      | tracks |
-  | She Wolf  | 15     |
+  | name      | tracks | release_date |
+  | She Wolf  | 15     | 23-11-2010   |
 
   Given the following Songs exist:
-  | name       | track  |
-  | Long Time  | 10     |
+  | name       | track  | duration  | link                  |
+  | Long Time  | 10     | 130       |www.youtube.com/su6sw  |
 
 Scenario: See songs of the artist
   Given the relation artist-album "Shakira" and "She Wolf"
