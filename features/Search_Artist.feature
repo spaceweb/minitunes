@@ -16,6 +16,7 @@ Scenario: Try to search existing artist
   When  I fill in "search" with "shakira"
   And   I press "Search"
   Then  I am on the "Shakira" page artist
+  Then I should see "Albums"
 
 Scenario: Try to search nonexistent artist (sad path)
 
@@ -24,4 +25,3 @@ Scenario: Try to search nonexistent artist (sad path)
   And   I press "Search"
   Then  I should be on the MiniTunes home page
   And   I should see "You search 'Artist That Does Not Exist' did not match anything on MiniTunes"
-  
