@@ -8,11 +8,18 @@ class ProfilesController < ApplicationController
     raise ActiveRecord::RecordNotFound if @user.nil?
 
     @following = @user.friends
-    @followers_length = (Friendship.where friend_id: @user.id).length
     @artists = Array.new
     Add.where(user_id: @user).each do |add|
       @artists << Artist.find_by_id(add.artist_id)
     end
+
+    @followers = Array.new
+    friendships = Friendship.where friend_id: @user.id
+    @followers_length = friendships.length
+    friendships.each do |friend|
+      @followers << User.find_by_id(friend.user_id)
+    end
+    @followers = @followers.sample 5
 
     if @user != current_user and not current_user.friends.include?(@user)
       @follow = @user # we can follow the user

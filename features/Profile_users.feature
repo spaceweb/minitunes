@@ -22,5 +22,5 @@ Feature: Testing the profiles's users of Minitunes
 
   Scenario: cant view profiles on minitunes when not logged in
     And   I visit the profile page CharlieProfile
-    Then  I should see "Sign in"
+    Then  I should see "You need to sign in or sign up before continuing"
 

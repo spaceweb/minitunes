@@ -21,12 +21,15 @@ module NavigationHelpers
 
     when /^the Login page$/ then
       '/login'
-    
+
     when /^the MiniTunes home page$/ then
       '/'
 
     when /^the "(.*)" page artist$/ then
       "/artists/#{URI.parse(URI.encode($1))}"
+
+    when /^the "(.*)" "(.*)" page album$/ then
+      "/artists/#{URI.parse(URI.encode($1))}/albums/#{URI.parse(URI.encode($2))}"
 
     when /^my profile page (.*)$/ then
       profile_path($1)

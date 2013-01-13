@@ -21,6 +21,11 @@
     %div{:class=>"navbar"}
       .navbar-inner
         %a{:class=>"brand", :href=>followers_path(@user.profile_name)}= "Followers (#{@followers_length})"
+      - @followers.each do |follower|
+        %br
+        .row
+          .span1= link_to image_tag(follower.gravatar+"?size=24"), profile_path(follower.profile_name)
+          %strong= link_to follower.name, profile_path(follower.profile_name)
 
     - if @similars.length > 0
       .navbar
