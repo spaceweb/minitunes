@@ -4,6 +4,7 @@ describe ArtistsController do
 
   fixtures :artists
   fixtures :users
+  fixtures :albums
   include Devise::TestHelpers
   describe 'create' do
 
@@ -37,19 +38,22 @@ describe ArtistsController do
     end
 
     describe 'After valid search in lastfm' do
-      before :each do
-        @Melendi_lastfm = mock("artist_search",{"name"=>"Melendi","bio" =>{"summary"=>"summary"}})
-        @Melendi = mock('Artist',:name=>'Melendi',:description=>'summary')
-        Artist.stub(:find_by_name).with('Melendi').and_return(nil)
-        Artist.stub(:find_by_name).with('MELENDI').and_return(nil)
-        Artist.stub(:find_in_lastfm).with('Melendi').and_return(@Melendi_lastfm)
-        post :create, {:search => "Melendi"}
+      before :each do    
+        @fake_shakira = artists(:shakira)
+        Artist.stub(:find_in_lastfm).with('Shakira').and_return(@fake_shakira)
+        post :create, {:search => "Shakira"}
       end
-      it "assign a variable artist" do
-        assert_not_empty assigns(:artist)
-      end
+      
       it 'should select the Search Results template for rendering' do
-        Artist.should_receive(:create).with(@Melendi)
+        Artist.stub(:create!).and_return(@fake_shakira)
+      end
+            
+      it "should create a relationship between Artist-Albums after of search the albums for this artist" do 
+        Artist.stub(:find_top_albums_in_lastfm).with('Shakira').and_return(albums(:loba))
+        Album.stub(:create!).and_return(albums(:loba))
+        r = albums(:loba).participates.build
+        @fake_shakira.participates.send(:<<, r)
+        @fake_shakira.participates.include?(albums(:loba)) == true
       end
     end
 
