@@ -1,14 +1,15 @@
 
-.page-header{:class=>'Reviews'}
-  %h3 Comments (#{@num_reviews})
+.reviews-content 
+  .page-header{:class=>'Reviews'}
+    %h3 Comments (#{@reviews.length})
 
-- @reviews.each do |review|
-  .row
-    .span1{:class=>'Reviews'}= image_tag review.user.gravatar
-    .span7{:class=>'Reviews'}
-      %strong= link_to review.user.name, profile_path(review.user.profile_name)
-      %p= review.comments
-      .text-info= time_ago_in_words(review.created_at) + " ago"
-      %br
+  - @reviews.each do |review|
+    .row
+      .span1{:class=>'Reviews'}= image_tag review.user.gravatar
+      .span7{:class=>'Reviews'}
+        %strong= link_to review.user.name, profile_path(review.user.profile_name)
+        %p= review.comments
+        .text-info= time_ago_in_words(review.created_at) + " ago"
+        %br
 
 

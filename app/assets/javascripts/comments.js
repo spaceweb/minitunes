@@ -1,8 +1,5 @@
 Comments = {
     setup: function() {
-        $('<div id="ShowReviews"></div>').
-            hide().
-            appendTo($('body'));
         $("#NewReview").submit(Comments.getReview);
     },
     getReview: function() {
@@ -10,17 +7,23 @@ Comments = {
                 url: $(this).attr('action'),
                 data: $(this).serialize(),
                 success: Comments.showReview,
-                error: function() { alert('Error!'); }
                });
         return(false);
     },
     showReview: function(data) {
-        $('.Reviews').hide();
-        $('#ShowReviews').
-            html(data).
-            css({'margin-left':200}).
-            show();
-        return(false);  
+        if (data.split("reviews-content").length > 1) {
+            content = $(".reviews-content").children().remove();
+            $(".reviews-content").append(data);
+            console.log(data);
+            return(false);
+        }else {
+
+           return(true); 
+        }
     },
+    redirect: function() {
+        console.log("redirects");
+        return(true);
+    }
 }
 $(Comments.setup);

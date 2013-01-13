@@ -6,6 +6,8 @@ class ReviewsController < ApplicationController
       @review = @artist.reviews.build(params[:review])
       current_user.reviews << @review
       @review.save!
+      @reviews = @artist.reviews
+      render :partial => 'artists/show_reviews', :object => @reviews and return if request.xhr?
       flash[:notice] = 'Review successfully created.'
       redirect_to artist_path
     else
