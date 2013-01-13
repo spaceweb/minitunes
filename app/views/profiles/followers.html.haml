@@ -7,21 +7,25 @@
   .span9
     %h2 Followers
     - if @followers.length > 0
-      %table{:class => "table table-hover"}
-        %tbody
-          - @followers.each do |follower|
-            .row
-              .span0= link_to image_tag(follower.gravatar), profile_path(follower.profile_name)
-              .span0
-                %strong= link_to follower.name, profile_path(follower.profile_name)
-                - if follower != current_user
-                  = form_tag friendship_destroy_path, method: :delete do |form|
-                    = hidden_field_tag(:friend_id, follower.id)
-                    = submit_tag "Unfollow", class: 'btn btn-danger'
-                - else
-                  %br
-                  %strong You
-            %br
+      - @followers.each do |follower|
+        .row
+          .span0= link_to image_tag(follower.gravatar), profile_path(follower.profile_name)
+          .span0
+            %strong= link_to follower.name, profile_path(follower.profile_name)
+            - follow_include = current_user.friends.include?(follower)
+            - btn_unfollow = follow_include ? "display:block" : "display:none"
+            - btn_follow = !follow_include && current_user != follower ? "display:block" : "display:none"
+
+            = form_tag friendships_path, method: :post do |form|
+              = hidden_field_tag(:friend_id, follower.id)
+              = submit_tag "Follow", {class: 'btn btn-primary follow', friend_id: follower.id, :style=>btn_follow}
+            = form_tag friendship_destroy_path, method: :delete do |form|
+              = hidden_field_tag(:friend_id, follower.id)
+              = submit_tag "Unfollow", {class: 'btn btn-danger unfollow', friend_id: follower.id, :style=>btn_unfollow}
+            - if follower == current_user
+              %br
+              %strong You
+        %br
     - else
       %pre
         %p= "No One's Following #{@user.name}"

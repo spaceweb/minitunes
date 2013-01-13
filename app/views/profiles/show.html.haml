@@ -36,14 +36,15 @@
     .page-header
       %h1= @user.name
 
-    - if @follow # Show to follow user
-      = form_tag friendships_path, method: :post do |form|
-        = hidden_field_tag(:friend_id, @follow.id)
-        = submit_tag "Follow", class: 'btn btn-primary'
-    - elsif @unfollow # Show to unfollow user
-      = form_tag friendship_destroy_path, method: :delete do |form|
-        = hidden_field_tag(:friend_id, @unfollow.id)
-        = submit_tag "Unfollow", class: 'btn btn-danger'
+    - btn_follow = @follow? "display:block" : "display:none"
+    - btn_unfollow = @unfollow? "display:block" : "display:none"
+
+    = form_tag friendships_path, method: :post do |form|
+      = hidden_field_tag(:friend_id, @user.id)
+      = submit_tag "Follow", {class: 'btn btn-primary follow', friend_id: @user.id, :style=>btn_follow}
+    = form_tag friendship_destroy_path, method: :delete do |form|
+      = hidden_field_tag(:friend_id, @user.id)
+      = submit_tag "Unfollow", {class: 'btn btn-danger unfollow', friend_id: @user.id, :style=>btn_unfollow}
 
     %h2 Favorites Artists
     - if @artists.length > 0
