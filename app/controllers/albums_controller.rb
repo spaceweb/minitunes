@@ -15,6 +15,17 @@ class AlbumsController < ApplicationController
   def create
     @artist = Artist.find_by_name(params[:name])
     @album = Album.find_by_name(params[:title])
+    a = Album.find_album_in_lastfm(params[:name], params[:title])
+    tracks = a["tracks"]["track"]
+    if not tracks.kind_of?(Array)
+      @tracks = Array.new
+      @tracks << tracks
+    else
+      @tracks = tracks
+    end
+    @album.tracks = @tracks.length
+    @album.release_date = a["releasedate"]
+    @album.save!
     if @album.contains.empty?
       @songs_search = Album.find_songs_in_lastfm(@artist.name, @album.name)
       @songs_search = @songs_search["tracks"]["track"]
