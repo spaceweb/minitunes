@@ -48,18 +48,23 @@ class ArtistsController < ApplicationController
           #BUSQUEDA ALBUMS
           @albums_search = Artist.find_top_albums_in_lastfm(params[:search])
           if @albums_search
-            @albums_search.each do |album_search|
-              a = Artist.find_album_in_lastfm(params[:search], album_search["name"])
-              tracks = a["tracks"]["track"]
-              if not tracks.kind_of?(Array)
-                @tracks = Array.new
-                @tracks << tracks
-              else
-                @tracks = tracks
+            begin
+              @albums_search.each do |album_search|
+                a = Artist.find_album_in_lastfm(params[:search], album_search["name"])
+                tracks = a["tracks"]["track"]
+                if not tracks.kind_of?(Array)
+                  @tracks = Array.new
+                  @tracks << tracks
+                else
+                  @tracks = tracks
+                end
+                album = Album.create!(:name => a["name"], :tracks => @tracks.length, :release_date => a["releasedate"])
+                r = album.participates.build
+                @artist.participates << r
               end
-              album = Album.create!(:name => a["name"], :tracks => @tracks.length, :release_date => a["releasedate"])
-              r = album.participates.build
-              @artist.participates << r
+            rescue
+              redirect_to artist_path(@artist.name)
+              return
             end
           end
         end
