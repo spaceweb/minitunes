@@ -74,7 +74,10 @@ hr {
   top: 22ex;
 }
 
+#videoSong {
+  position: absolute;
+}
+
 #filter_albums {
   float: right; 
-  
 }

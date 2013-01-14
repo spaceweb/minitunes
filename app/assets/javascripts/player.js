@@ -15,9 +15,10 @@ PLAYERAjax = {
         return(false);
     },
     showVideoSong: function(data) {
+        var oneFourth = Math.ceil($(window).width() / 4);
         $('#videoSong').
             html(data).
-            css({'left': 800, 'top': 80}).
+            css({'left': 2*oneFourth, 'width': 3/2*oneFourth, 'top': 60}).
             show();
         return(false);
     },
