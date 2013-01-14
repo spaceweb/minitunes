@@ -17,7 +17,7 @@ PLAYERAjax = {
     showVideoSong: function(data) {
         $('#videoSong').
             html(data).
-            css({'left': 603, 'top': 80}).
+            css({'left': 800, 'top': 80}).
             show();
         return(false);
     },
