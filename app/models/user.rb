@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
                             with: /^[a-zA-Z0-9_-]+$/,
                             message: 'Must be formatted correctly.'
                           }
-  has_many :reviews
+  has_many :reviews, :dependent => :destroy
   has_many :artists, :through => :review
   has_many :friendships
   has_many :friends, through: :friendships, :dependent => :destroy
