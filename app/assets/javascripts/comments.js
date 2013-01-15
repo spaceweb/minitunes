@@ -17,13 +17,9 @@ Comments = {
             console.log(data);
             return(false);
         }else {
-
-           return(true); 
+          location.href='/login'
+          return(true);
         }
     },
-    redirect: function() {
-        console.log("redirects");
-        return(true);
-    }
 }
 $(Comments.setup);
