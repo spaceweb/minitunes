@@ -28,9 +28,10 @@
       %table#albums
         %tbody
           - @albums.each_with_index do |album, i|
+            - name_album = album.name.gsub('.','#').gsub('/','$')
             %tr
               %td= "#{i+1}."
-              %td= link_to album.name, artist_album_path(@artist.name, album.name)
+              %td= link_to album.name, artist_album_path(@artist.name, name_album)
 
   .span3
     %div{:class=>"well sidebar-nav"}

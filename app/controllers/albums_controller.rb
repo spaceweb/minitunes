@@ -3,7 +3,8 @@ class AlbumsController < ApplicationController
   def show
     @songs = Array.new
     @artist = Artist.find_by_name(params[:name])
-    @album = Album.find_by_name(params[:title])
+    name_album = params[:title].gsub('#','.').gsub('$','/')
+    @album = Album.find_by_name(name_album)
     @songs_search = Album.find_songs_in_lastfm(@artist.name, @album.name)
     @album_image = @songs_search["image"][4]["content"]
     contains = Contain.find_all_by_album_id(@album.id)
@@ -14,9 +15,10 @@ class AlbumsController < ApplicationController
 
   def create
     @artist = Artist.find_by_name(params[:name])
-    @album = Album.find_by_name(params[:title])
+    name_album = params[:title].gsub('#','.').gsub('$','/')
+    @album = Album.find_by_name(name_album)
     if not @album.tracks
-      a = Album.find_album_in_lastfm(params[:name], params[:title])
+      a = Album.find_album_in_lastfm(params[:name], name_album)
       tracks = a["tracks"]["track"]
       if not tracks.kind_of?(Array)
         @tracks = Array.new
@@ -44,7 +46,7 @@ class AlbumsController < ApplicationController
         @album.contains << c
       end
     end
-    redirect_to album_path(@artist.name, @album.name)
+    redirect_to album_path(@artist.name, params[:title])
   end
 
 end
