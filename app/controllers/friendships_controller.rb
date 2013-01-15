@@ -21,7 +21,7 @@ class FriendshipsController < ApplicationController
       @friend = User.find_by_id(params[:friend_id])
       @friendship = current_user.friendships.find_by_friend_id(@friend.id)
 
-      @friendship.destroy
+      @friendship.destroy if @friendship
       render :text => params[:friend_id] and return if request.xhr?
       flash[:notice] = "You are not following #{@friend.name}"
       redirect_to profile_path(@friend.profile_name)
