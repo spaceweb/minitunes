@@ -33,12 +33,12 @@ FollowUser = {
   toggleFollow: function(data) {
     followBtn.hide();
     unfollowBtn.show();
-    return(false);
+    $(FollowUser.setupFollow);
   },
   toggleUnFollow: function(data) {
     followBtn.show();
     unfollowBtn.hide();
-    return(false);
+    $(FollowUser.setupUnFollow);
   }
 }
 $(FollowUser.setupFollow);

@@ -33,12 +33,12 @@ AddArtist = {
   toggleAdd: function(data) {
     addBtn.hide();
     removeBtn.show();
-    return(false);
+    $(AddArtist.setupAdd);
   },
   toggleRemove: function(data) {
     addBtn.show();
     removeBtn.hide();
-    return(false);
+    $(AddArtist.setupRemove);
   }
 }
 $(AddArtist.setupAdd);
