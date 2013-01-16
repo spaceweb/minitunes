@@ -1,6 +1,8 @@
 = form_tag reviews_path , :id => 'NewReview' do
   = label :review, :comments, 'Add your comment'
   = text_area :review, :comments, :id => 'textareareviews'
+  = text_field_tag 'x-webkit-speech', nil, options = {:id => 'inputspeech', :"onwebkitspeechchange" => "transcribe(this.value)", :"x-webkit-speech" => ""}
+
 
   %br
   = submit_tag 'Create Comment', class: "btn btn-primary btn-review"

@@ -81,3 +81,14 @@ hr {
 #filter_albums {
   float: right; 
 }
+
+#inputspeech {
+  font-size: 25px;
+  width: 25px;
+  height: 25px;
+  cursor:pointer;
+  border: none;
+  float: right;
+  outline: none;
+  background: transparent;
+}
