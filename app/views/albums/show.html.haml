@@ -3,7 +3,8 @@
 
 .row
   .span3
-    = link_to image_tag(@album_image)
+    - if @album_image
+      = link_to image_tag(@album_image)
 
   .span3
     %h2= @album.name
