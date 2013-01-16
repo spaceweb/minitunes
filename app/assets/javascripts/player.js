@@ -12,10 +12,13 @@ PLAYERAjax = {
                 success: PLAYERAjax.showVideoSong,
                 error: function() { alert('Error!'); }
                });
+        $('#songs a').removeAttr("id");
+        $(this).attr('id','stop_button');
         return(false);
     },
     showVideoSong: function(data) {
         var oneFourth = Math.ceil($(window).width() / 4);
+        $(STOPPlayer.setup);
         $('#videoSong').
             html(data).
             css({'left': 2*oneFourth, 'width': 3/2*oneFourth, 'top': 60}).

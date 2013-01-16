@@ -1,11 +1,12 @@
 STOPPlayer = {
    setup: function() {
-        $('<img alt="Stop_icon" src="/assets/stop_icon.png" />'
-         ).insertAfter('#songs a').click(STOPPlayer.closeVideoSong);
+        $('#play_button').remove();
+        $('<img alt="Stop_icon" id="play_button" src="/assets/stop_icon.png" />'
+         ).insertAfter('#stop_button').click(STOPPlayer.closeVideoSong);
     },
     closeVideoSong: function () {
         $('#videoSong').remove();
-        $(PLAYERAjax.setup);
+        $('#play_button').remove();
+        window.location.reload();
     }
 }
-$(STOPPlayer.setup);
