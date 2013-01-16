@@ -27,6 +27,9 @@ class AlbumsController < ApplicationController
         @tracks = tracks
       end
       @album.tracks = @tracks.length
+      if a["releasedate"].empty?
+        a["releasedate"] = ""
+      end
       @album.release_date = a["releasedate"]
       @album.save!
     end
