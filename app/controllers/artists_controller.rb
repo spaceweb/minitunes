@@ -46,7 +46,13 @@ class ArtistsController < ApplicationController
           createSimilar(@artist, @artist_search["similar"]["artist"])
 
           #BUSQUEDA ALBUMS
-          @albums_search = Artist.find_top_albums_in_lastfm(params[:search])
+          @albumssearch = Artist.find_top_albums_in_lastfm(params[:search])
+          if not @albumssearch.kind_of?(Array)
+            @albums_search = Array.new
+            @albums_search << @albumssearch
+          else
+             @albums_search = @albumssearch
+          end
           if @albums_search
             @albums_search.each do |album_search|
               @album = Album.create!(:name => album_search["name"])
