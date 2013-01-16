@@ -4,7 +4,7 @@
 
 = form_tag new_artist_path do
   %center
-    = text_field_tag 'search', value = nil, options = {:placeholder => "Search your favorite artist...", :class => "round shadow", :id => 'textareaindex'}
+    = text_field_tag 'search', value = nil, options = {:placeholder => "Search your favorite artist...", :class => "round shadow", :id => 'textareaindex', :"x-webkit-speech" => ""}
   %br
   %center
     = submit_tag 'Search', options ={class: "btn btn-primary", :id => 'buttomindex'}
