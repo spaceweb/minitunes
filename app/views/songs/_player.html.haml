@@ -1,4 +1,10 @@
-%div{:class=>"alert alert-info"}
-  = "Now playing #{@song} by #{@artist}"
-%center
-  %iframe{:allowfullscreen => "", :frameborder => "0", :height => "243", :src => "http://www.youtube.com/embed/#{link}?autoplay=1", :width => "417"}
+-if link == "#"
+  %div{:class=>"alert alert-danger"}
+    = "So far no videos for this item"
+  %center
+    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "243", :src => "http://www.youtube.com/embed/#{link}?autoplay=1", :width => "417"}
+-else
+  %div{:class=>"alert alert-info"}
+    = "Now playing #{@song} by #{@artist}"
+  %center
+    %iframe{:allowfullscreen => "", :frameborder => "0", :height => "243", :src => "http://www.youtube.com/embed/#{link}?autoplay=1", :width => "417"}

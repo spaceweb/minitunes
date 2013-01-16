@@ -21,7 +21,7 @@ PLAYERAjax = {
         $(STOPPlayer.setup);
         $('#videoSong').
             html(data).
-            css({'left': 2*oneFourth, 'width': 3/2*oneFourth, 'top': 60}).
+            css({'left': 2*oneFourth, 'width': 3/2*oneFourth, 'top': 1/4*oneFourth}).
             show();
         return(false);
     },
