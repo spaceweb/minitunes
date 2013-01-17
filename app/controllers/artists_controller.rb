@@ -38,37 +38,17 @@ class ArtistsController < ApplicationController
     if not @artist
       @artist_search = Artist.find_in_lastfm(params[:search])
       if @artist_search and @artist_search["bio"]["summary"] != {}
-        artist = {:name => @artist_search["name"], :description => @artist_search["bio"]["summary"]}
-        artist[:description] = artist[:description].sub(/<(.*)>/,'')
-        @artist = Artist.create!(artist) if artist[:description] != ''
+        @artist = createArtist(@artist_search)
         if @artist
-          # Save similars artist on DB
           createSimilar(@artist, @artist_search["similar"]["artist"])
 
-          #BUSQUEDA ALBUMS
           @albumssearch = Artist.find_top_albums_in_lastfm(params[:search])
-          if not @albumssearch.kind_of?(Array)
-            @albums_search = Array.new
-            @albums_search << @albumssearch
-          else
-             @albums_search = @albumssearch
-          end
-          if @albums_search
-            @albums_search.each do |album_search|
-              @album = Album.create!(:name => album_search["name"])
-              r = @album.participates.build
-              @artist.participates << r
-            end
-          end
+          createAlbums(@albumssearch, @artist)
         end
       end
       if !@artist or !@artist_search 
         flash[:notice] = "You search '#{params[:search]}' did not match anything on MiniTunes"
-        if current_user
-          redirect_to profile_path(current_user.profile_name)
-        else
-          redirect_to root_path
-        end
+        redirect_to root_path
       end
     end
     redirect_to artist_path(@artist.name) if @artist
@@ -81,11 +61,7 @@ class ArtistsController < ApplicationController
       else
         flash[:warning] = lastfm_error.message
       end
-      if current_user
-        redirect_to profile_path(current_user.profile_name)
-      else
-        redirect_to root_path
-      end
+      redirect_to root_path
   end
 
   def search_artist
@@ -94,6 +70,13 @@ class ArtistsController < ApplicationController
   end
 
   protected
+  def createArtist(artist_search)
+    artist = {:name => artist_search["name"], :description => artist_search["bio"]["summary"]}
+    artist[:description] = artist[:description].sub(/<(.*)>/,'')
+    @artist = Artist.create!(artist) if artist[:description] != ''
+    return @artist
+  end
+  
   def createSimilar(artist, similars) 
     similars.each do |similar|
       if similar.has_key?("name")
@@ -101,6 +84,20 @@ class ArtistsController < ApplicationController
                   similar_name: similar["name"],
                   artist_name: artist.name)
       end
+    end
+  end
+  
+  def createAlbums(albumssearch, artist)
+    if not albumssearch.kind_of?(Array)
+      albums_search = Array.new
+      albums_search << albumssearch
+    else
+      albums_search = albumssearch
+    end
+    albums_search.each do |album|
+      @album = Album.create!(:name => album["name"])
+      r = @album.participates.build
+      artist.participates << r
     end
   end
 end

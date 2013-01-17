@@ -8,16 +8,7 @@
     = link_to image_tag(@artist_image)
     %br
     %br
-    -if @artist.name
-      - btn_add = !@add? "display:block" : "display:none"
-      - btn_remove = @add ? "display:block" : "display:none"
-
-      = form_tag destroy_user_artist_path, method: :delete do |form| 
-        = hidden_field_tag(:id, @artist.id)
-        = submit_tag "Remove Artist", {class: 'btn btn-danger btn-remove', id: @artist.id, :style=>btn_remove}
-      = form_tag user_artist_path, method: :post do |form|
-        = hidden_field_tag(:id, @artist.id)
-        = submit_tag "Add Artist", {class: 'btn btn-primary btn-add', id: @artist.id, :style=>btn_add}
+    = render 'user_artist_form'
 
     %h3 Description
     %p#description= @artist.description

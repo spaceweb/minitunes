@@ -18,7 +18,7 @@ describe ArtistsController do
     it "with no search_id redirect to the site root when the user is registered" do
       sign_in users(:charlie)
       post :create
-      assert_redirected_to profile_path(users(:charlie).profile_name)
+      assert_redirected_to root_path
       assert_equal flash[:notice], "You search '' did not match anything on MiniTunes"
     end
 

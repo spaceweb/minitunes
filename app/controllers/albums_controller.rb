@@ -19,37 +19,46 @@ class AlbumsController < ApplicationController
     @album = Album.find_by_name(name_album)
     if not @album.tracks
       a = Album.find_album_in_lastfm(params[:name], name_album)
-      tracks = a["tracks"]["track"]
-      if not tracks.kind_of?(Array)
-        @tracks = Array.new
-        @tracks << tracks
-      else
-        @tracks = tracks
-      end
-      @album.tracks = @tracks.length
-      if a["releasedate"].empty?
-        a["releasedate"] = ""
-      end
-      @album.release_date = a["releasedate"]
-      @album.save!
+      updateArtist(a, @album)
     end
     if @album.contains.empty?
       @songs_search = Album.find_songs_in_lastfm(@artist.name, @album.name)
-      @songs_search = @songs_search["tracks"]["track"]
-      if not @songs_search.kind_of?(Array)
-        @songs = Array.new
-        @songs << @songs_search
-      else
-        @songs = @songs_search
-      end
-      @songs.each do |s|
-        link = Album.find_in_youtube(@artist.name, s["name"])
-        song = Song.create!(:name => s["name"], :track => s["rank"].to_i, :duration => s["duration"], :link => link)
-        c = song.contains.build
-        @album.contains << c
-      end
+      createSongs(@songs_search, @artist)
     end
     redirect_to album_path(@artist.name, params[:title])
+  end
+  
+  protected
+  def updateArtist(result_search, album)
+    tracks = result_search["tracks"]["track"]
+    if not tracks.kind_of?(Array)
+      @tracks = Array.new
+      @tracks << tracks
+    else
+      @tracks = tracks
+    end
+    album.tracks = @tracks.length
+    if result_search["releasedate"].empty?
+      result_search["releasedate"] = ""
+    end
+    album.release_date = result_search["releasedate"]
+    album.save!
+  end
+  
+  def createSongs(songs_search, artist)
+    songs_search = songs_search["tracks"]["track"]
+    if not songs_search.kind_of?(Array)
+      @songs = Array.new
+      @songs << songs_search
+    else
+      @songs = songs_search
+    end
+    @songs.each do |s|
+      link = Album.find_in_youtube(artist.name, s["name"])    
+      song = Song.create!(:name => s["name"], :track => s["rank"].to_i, :duration => s["duration"], :link => link)
+      c = song.contains.build
+      @album.contains << c
+    end
   end
 
 end
