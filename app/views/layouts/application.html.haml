@@ -18,11 +18,11 @@
           %ul{:class=>"nav pull-right"}
             - if user_signed_in?
               %li= link_to current_user.name, "/#{current_user.profile_name}"
-              %li= link_to "Edit", edit_user_registration_path 
+              %li= link_to "Edit", edit_user_registration_path, :remote => true
               %li= link_to "Log out", logout_path
             - elsif
               %li= link_to "Register", register_path
-              %li= link_to "Log in", login_path
+              %li= link_to "Log in", login_path, :class => "link_login"
     #main{:class=>"container"}
       - flash.each do |type, message|
         %div{:class=>"alert #{flash_class type}"}

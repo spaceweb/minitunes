@@ -92,3 +92,8 @@ hr {
   outline: none;
   background: transparent;
 }
+
+.modal {
+  overflow-y: scroll;
+  max-height:90%;
+}

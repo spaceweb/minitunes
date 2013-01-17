@@ -24,3 +24,5 @@ $(document).ready(function (){
       content : 'We provide recommendations and help you discover new artists based on what you like.' //this is the content of the html box. add the image here or anything you want really.
 });
 });
+
+$("#user-edit").modal();
