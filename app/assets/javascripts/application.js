@@ -22,7 +22,9 @@ $(document).ready(function (){
       html: 'true',
       delay: { show: 1000, hide: 1000 }, //needed to show html of course
       content : 'We provide recommendations and help you discover new artists based on what you like.' //this is the content of the html box. add the image here or anything you want really.
-});
+  });
+  $("#loginModal").modal();
+  $("#registerModal").modal();
+  $("#user-edit").modal();
 });
 
-$("#user-edit").modal();
