@@ -13,11 +13,9 @@ Login = {
     appendLogin: function(data) {
         jdata = jQuery(data);
         loginmodal = jdata.find("#loginModal");
-        $('#main').after(jdata);
+        $('#main').after(loginmodal);
         $('#loginModal').slideDown().modal();
-        if (location.pathname === "/") {
-            $('.search-query').remove();
-        }
+        $(Login.setup);
         return(false);
     },
 }

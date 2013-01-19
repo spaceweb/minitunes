@@ -21,7 +21,7 @@
               %li= link_to "Edit", edit_user_registration_path, :remote => true
               %li= link_to "Log out", logout_path
             - elsif
-              %li= link_to "Register", register_path
+              %li= link_to "Register", register_path, :class => "link-Register"
               %li= link_to "Log in", login_path, :class => "link-Login"
     #main{:class=>"container"}
       - flash.each do |type, message|

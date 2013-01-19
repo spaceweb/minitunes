@@ -1,23 +1,26 @@
-<div class="row">
-<div class="span4">
+<div class="modal hide fade in" id="registerModal">
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal">x</button>
+    <h2>Sign Up</h2>
+  </div>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "well"}) do |f| %>
+<div class="modal-body">
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "well"}) do |f| %>
   <%= f.error_notification %>
 
   <fieldset>
-  <legend>Sign Up</legend> 
     <%= f.input :name %>
     <%= f.input :profile_name %>
     <%= f.input :email %>
     <%= f.input :password %>
     <%= f.input :password_confirmation %>
-    <%= f.button :submit, "Sign up", :class => "btn btn-primary" %>
   </fieldset>
-<% end %>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
 </div>
-  <div class="span8">
-    <h3>Once signed up, you can meet new people and learning about their tastes or exchange comments on your favorite bands or artists.</h3>
-  </div>
+<div class="modal-footer">
+  <%= f.button :submit, "Sign up", :class => "btn btn-warning" %>
+  <a href="#" class="btn" data-dismiss="modal">Close</a>
+</div>
+<% end %>
 </div>
