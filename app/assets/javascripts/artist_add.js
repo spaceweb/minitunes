@@ -11,7 +11,11 @@ AddArtist = {
         url: '/user_artist/create',
         data: { id: addBtn.attr('id') },
         type: 'POST',
-        success: AddArtist.toggleAdd
+        success: AddArtist.toggleAdd,
+        error: function () {
+          $(".link-Login").click();
+          $(AddArtist.setupAdd);
+        }
       });
       return(false);
     })
@@ -33,6 +37,7 @@ AddArtist = {
   toggleAdd: function(data) {
     addBtn.hide();
     removeBtn.show();
+    $(".link-Login").click();
     $(AddArtist.setupAdd);
   },
   toggleRemove: function(data) {

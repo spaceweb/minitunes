@@ -15,11 +15,10 @@ Comments = {
             content = $(".reviews-content").children().remove();
             $(".reviews-content").append(data);
             console.log(data);
-            return(false);
         }else {
-          location.href='/login'
-          return(true);
+            $(".link-Login").click();
         }
+        return(false);
     },
 }
 $(Comments.setup);
