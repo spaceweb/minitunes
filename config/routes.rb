@@ -21,6 +21,7 @@ Minitunes::Application.routes.draw do
   post 'user_artist/create', to: 'user_artist#create', as: :user_artist
   delete 'user_artist/destroy', to: 'user_artist#destroy', as: :destroy_user_artist
 
+  get '/about', to: 'index#about', as: 'about'
   get ':id', to: 'profiles#show', as: 'profile'
   get ':id/followings', to: 'profiles#followings', as: :followings
   get ':id/followers', to: 'profiles#followers', as: :followers

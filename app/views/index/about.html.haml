@@ -1,0 +1,40 @@
+.hero-unit
+  %h1 About
+  .row
+    .span5 
+      %h3 Vision
+      %small Our mission is to help people easily learn about music they might like. The vast quantity of music available nowadays makes it impossible to discover everything that one could enjoy. However, the discovery process can be significantly improved by giving recommendations based on a person's existing taste in music.
+
+    .span5
+      %h3 Who is behind Minitunes?
+      .accordion{:id=>"accordion2"}
+        .accordion-group
+          .accordion-heading
+            %a{:class=>"accordion-toggle", "data-toggle"=>"collapse", "data-parent"=>"#accordion2", :href=>"#collapseOne"} Robin Giles Ribera
+          #collapseOne{:class=>"accordion-body collapse"}
+            .accordion-inner robinspace2d@gmail.com
+
+        .accordion-group
+          .accordion-heading
+            %a{:class=>"accordion-toggle", "data-toggle"=>"collapse", "data-parent"=>"#accordion2", :href=>"#collapseTwo"} Jorge Campos Serrano
+          #collapseTwo{:class=>"accordion-body collapse"}
+            .accordion-inner jorge.camposserrano@gmail.com
+
+        .accordion-group
+          .accordion-heading
+            %a{:class=>"accordion-toggle", "data-toggle"=>"collapse", "data-parent"=>"#accordion2", :href=>"#collapseThree"} Nerea Cortés Lomana
+          #collapseThree{:class=>"accordion-body collapse"}
+            .accordion-inner n.corteslomana@gmail.com
+
+        .accordion-group
+          .accordion-heading
+            %a{:class=>"accordion-toggle", "data-toggle"=>"collapse", "data-parent"=>"#accordion2", :href=>"#collapseFour"} Gonzalo Rodríguez Muñoz
+          #collapseFour{:class=>"accordion-body collapse"}
+            .accordion-inner gonzalorm_1987@hotmail.com
+
+  %p
+    %a{href:"https://github.com/spaceweb/minitunes"} Source Code
+  %small Copyright © 2013 Minitunes All Rights Reserved
+
+
+        

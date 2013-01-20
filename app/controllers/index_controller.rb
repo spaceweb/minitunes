@@ -4,6 +4,9 @@ class IndexController < ApplicationController
     @index = true
   end
 
+  def about
+  end
+
 end
 
 
