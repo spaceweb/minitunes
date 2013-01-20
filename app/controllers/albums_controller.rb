@@ -19,7 +19,7 @@ class AlbumsController < ApplicationController
     @album = Album.find_by_name(name_album)
     if not @album.tracks
       a = Album.find_album_in_lastfm(params[:name], name_album)
-      updateArtist(a, @album)
+      updateAlbum(a, @album)
     end
     if @album.contains.empty?
       @songs_search = Album.find_songs_in_lastfm(@artist.name, @album.name)
@@ -29,7 +29,7 @@ class AlbumsController < ApplicationController
   end
   
   protected
-  def updateArtist(result_search, album)
+  def updateAlbum(result_search, album)
     tracks = result_search["tracks"]["track"]
     if not tracks.kind_of?(Array)
       @tracks = Array.new

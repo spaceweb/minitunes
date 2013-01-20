@@ -92,3 +92,56 @@ hr {
   outline: none;
   background: transparent;
 }
+
+#reviewspaginate .no_more{
+  background-color: white;
+  color: gray;
+  cursor: default;
+}
+
+.info_text{
+  color: gray;
+  text-align:center;
+}
+.alt_page_navigation {
+  display: block;
+  overflow: hidden;
+  padding: 0 5px 5px 0;
+  float: right; 
+}
+
+.alt_page_navigation a {
+  float: left;
+  color: black;
+  font-size:14px;
+  line-height:24px;
+  font-weight: normal;
+  text-align: center;
+  border: 1px solid #BBB;
+  min-width: 14px;
+  padding: 0 7px;
+  margin: 0 5px 0 0;
+  border-radius: 3px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+  background: #efefef; /* Old browsers */
+  background: -moz-linear-gradient(top, #ffffff 0%, #efefef 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#efefef)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #ffffff 0%,#efefef 100%); /* Opera11.10+ */
+  background: -ms-linear-gradient(top, #ffffff 0%,#efefef 100%); /* IE10+ */
+  background: linear-gradient(top, #ffffff 0%,#efefef 100%); /* W3C */
+} 
+
+.ellipse{
+  float: left;
+}
+.active_page{
+	background-color:white !important;
+	color:gray !important;
+}
+
+.test.info{
+  color: gray;
+}
+
+

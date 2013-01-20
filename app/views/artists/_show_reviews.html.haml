@@ -2,15 +2,18 @@
 .reviews-content 
   .page-header{:class=>'Reviews'}
     %h3 Comments (#{@reviews.length})
-
-  - @reviews.each do |review|
-    .row
-      - if review.user != nil
-        .span1{:class=>'Reviews'}= image_tag review.user.gravatar
-        .span7{:class=>'Reviews'}
-          %strong= link_to review.user.name, profile_path(review.user.profile_name)
-          %p= review.comments
-          .text-info= time_ago_in_words(review.created_at) + " ago"
-          %br
+  %div{:id => 'reviewspaginate', :class=>'container'}
+    %div{:class=>"info_text"}
+    %ul{:class=>'alt_content'}
+      - @reviews.each do |review|
+        .row
+          - if review.user != nil
+            .span1{:class=>'Reviews'}= image_tag review.user.gravatar
+            .span7{:class=>'Reviews'}
+              %strong= link_to review.user.name, profile_path(review.user.profile_name)
+              %p= review.comments
+              .text-info= time_ago_in_words(review.created_at) + " ago"
+              %br
+    %div{:class=>'alt_page_navigation'}
 
 
