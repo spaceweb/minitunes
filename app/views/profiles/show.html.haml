@@ -56,7 +56,7 @@
       - @artists.each_with_index do |artist, i|
         - break if i == 20
         %pre
-          = link_to artist.name, artist_path(uri(artist.name))
+          = link_to artist.name.gsub('##$','.').gsub('##@','/'), artist_path(uri(artist.name))
     - else
       %pre
         %p= "#{@user.name} has not added anything yet."
