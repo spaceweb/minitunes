@@ -24,6 +24,7 @@ SubmitLogin = {
                     logindata = jdata.find(".nav.pull-right");
                     $('.nav.pull-right').html(logindata);
                     $('#loginModal').modal('toggle');
+                    $('#loginModal').remove();
                 },
                 error: function(data){
                     $(".alert.alert-error").remove();

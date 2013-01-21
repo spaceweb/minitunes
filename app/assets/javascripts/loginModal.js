@@ -11,9 +11,11 @@ Login = {
         })
     },
     appendLogin: function(data) {
-        jdata = jQuery(data);
-        loginmodal = jdata.find("#loginModal");
-        $('#main').after(loginmodal);
+        if (!$("#loginModal").length>0) {
+            jdata = jQuery(data);
+            loginmodal = jdata.find("#loginModal");
+            $('#main').after(loginmodal);
+        }
         $('#loginModal').slideDown().modal();
         $(Login.setup);
         $(SubmitLogin.setup);
