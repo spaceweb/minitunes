@@ -12,9 +12,9 @@ Comments = {
     },
     showReview: function(data) {
         if (data.split("reviews-content").length > 1) {
-            content = $(".reviews-content").children().remove();
+            $(".reviews-content").children().remove();
             $(".reviews-content").append(data);
-            console.log(data);
+            $("#textareareviews").val('');
             $('#reviewspaginate').pajinate({
               items_per_page : 10,
               num_page_links_to_display : 5,

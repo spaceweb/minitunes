@@ -4,10 +4,10 @@
     <h2>Sign Up</h2>
   </div>
 
-<div class="modal-body">
-  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {class: "well"}) do |f| %>
+  <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: {id: "ajax_signup", class: "well"}) do |f| %>
   <%= f.error_notification %>
 
+<div class="modal-body">
   <fieldset>
     <%= f.input :name %>
     <%= f.input :profile_name %>

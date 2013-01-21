@@ -11,11 +11,14 @@ Register = {
         })
     },
     appendRegister: function(data) {
-        jdata = jQuery(data);
-        registerModal = jdata.find("#registerModal");
-        $('#main').after(registerModal);
+        if (!$("#registerModal").length>0) {
+            jdata = jQuery(data);
+            registerModal = jdata.find("#registerModal");
+            $('#main').after(registerModal);
+        }
         $('#registerModal').slideDown().modal();
         $(Register.setup);
+        $(SubmitRegister.setup);
         return(false);
     },
 }
