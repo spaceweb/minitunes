@@ -15,6 +15,10 @@
 //= require_tree .
 
 $(document).ready(function (){
+  // Remove flash messages
+  setTimeout("$('.alert').remove()", 5000);
+  setTimeout("$('#textareaindex').popover('hide')", 10000);
+  // Text Info
   setTimeout("$('#textareaindex').click()", 500);
   $("#textareaindex").popover({
       placement : 'right', //placement of the popover. also can use top, bottom, left or right
