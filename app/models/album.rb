@@ -4,7 +4,7 @@ class Album < ActiveRecord::Base
   has_many :artists, :through => :participate
   has_many :contains, :dependent => :destroy
   has_many :songs, :through => :contain
-  validates_uniqueness_of :name
+  
 
   def self.api_key
     '4eca38cd6745ccde896f9d2977916b15'

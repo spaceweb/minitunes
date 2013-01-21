@@ -38,12 +38,17 @@ class ArtistsController < ApplicationController
     if not @artist
       @artist_search = Artist.find_in_lastfm(params[:search])
       if @artist_search and @artist_search["bio"]["summary"] != {}
-        @artist = createArtist(@artist_search)
+        begin
+          @artist = createArtist(@artist_search)
+        rescue
+          redirect_to artist_path(@artist_search["name"])
+          return
+        end
         if @artist
           createSimilar(@artist, @artist_search["similar"]["artist"])
 
           @albumssearch = Artist.find_top_albums_in_lastfm(params[:search])
-          createAlbums(@albumssearch, @artist)
+          createAlbums(@albumssearch, @artist) if @albumssearch
         end
       end
       if !@artist or !@artist_search 
