@@ -12,9 +12,9 @@ Comments = {
     },
     showReview: function(data) {
         if (data.split("reviews-content").length > 1) {
-            content = $(".reviews-content").children().remove();
+            $(".reviews-content").children().remove();
             $(".reviews-content").append(data);
-            console.log(data);
+            $("#textareareviews").val('');
         }else {
             $(".link-Login").click();
         }
