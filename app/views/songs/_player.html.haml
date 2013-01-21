@@ -5,6 +5,6 @@
     %iframe{:allowfullscreen => "", :frameborder => "0", :height => "243", :src => "http://www.youtube.com/embed/#{link}?autoplay=1", :width => "417"}
 -else
   %div{:class=>"alert alert-info"}
-    = "Now playing #{@song} by #{@artist}"
+    = "Now playing #{@song} by #{@artist.gsub('##$','.').gsub('##@','/')}"
   %center
     %iframe{:allowfullscreen => "", :frameborder => "0", :height => "243", :src => "http://www.youtube.com/embed/#{link}?autoplay=1", :width => "417"}

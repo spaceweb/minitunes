@@ -1,5 +1,5 @@
 .page-header
-  %h1= link_to @artist.name, artist_path(@artist.name)
+  %h1= link_to @artist.name.gsub('##$','.').gsub('##@','/'), artist_path(@artist.name)
 
 .row
   .span3

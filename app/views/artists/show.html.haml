@@ -1,7 +1,7 @@
 -#  This file is app/views/index/index.html.haml
 
 .page-header
-  %h1= @artist.name
+  %h1= @artist.name.gsub('##$','.').gsub('##@','/')
 
 .row
   .span3
@@ -19,7 +19,7 @@
       %table#albums
         %tbody
           - @albums.each_with_index do |album, i|
-            - name_album = album.name.gsub('.','#').gsub('/','$')
+            - name_album = album.name.gsub('.','##$').gsub('/','##@')
             %tr
               %td= "#{i+1}."
               %td= link_to album.name, artist_album_path(@artist.name, name_album)
