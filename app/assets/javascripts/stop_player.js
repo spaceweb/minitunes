@@ -1,12 +1,20 @@
 STOPPlayer = {
-   setup: function() {
-        $('#play_button').remove();
-        $('<img alt="Stop_icon" id="play_button" src="/assets/stop_icon.png" />'
-         ).insertAfter('#stop_button').click(STOPPlayer.closeVideoSong);
+    setup: function() {
+         $('#stop_button').click(STOPPlayer.getVideoUrl);
     },
-    closeVideoSong: function () {
+    getVideoUrl: function () {
+        $.ajax({type: 'GET',
+                url: $(this).attr('href'),
+                timeout: 5000,
+                success: STOPPlayer.closeVideoSong,
+                error: function() { alert('Error!'); }
+               });
+        return(false);
+    },
+    closeVideoSong: function(data) {
         $('#videoSong').remove();
-        $('#play_button').remove();
-        window.location.reload();
-    }
+        $('#stop_button').replaceWith('<img alt="Play_icon" id="play_button" src="/assets/play_icon.png" />');
+        $(PLAYERAjax.setup);
+        return(false);
+    },
 }

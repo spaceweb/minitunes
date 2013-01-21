@@ -12,8 +12,9 @@ PLAYERAjax = {
                 success: PLAYERAjax.showVideoSong,
                 error: function() { alert('Error!'); }
                });
-        $('#songs a').removeAttr("id");
-        $(this).attr('id','stop_button');
+        $('#stop_button').replaceWith('<img alt="Play_icon" id="play_button" src="/assets/play_icon.png" />');
+        $('#songs a img').removeAttr("id");
+        $(this).find('img').replaceWith('<img alt="Stop_icon" id="stop_button" src="/assets/stop_icon.png" />');
         return(false);
     },
     showVideoSong: function(data) {
