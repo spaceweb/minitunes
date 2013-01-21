@@ -3,7 +3,7 @@
     <button class="close" data-dismiss="modal">x</button>
     <h2>Sign In</h2>
   </div>
-  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {class: "well"}) do |f| %>
+  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), html: {id: "ajax_signin", class: "well"}) do |f| %>
    
   <div class="modal-body">
     <%= f.input :email %>
@@ -15,7 +15,7 @@
   </div>
 
   <div class="modal-footer">
-    <%= f.button :submit, "Sign in", :class => "btn btn-primary"%>
+    <%= f.button :submit, "Sign in", :class => "btn btn-primary btn-login-submit"%>
     <a href="#" class="btn" data-dismiss="modal">Close</a>
   </div>
 <% end -%>

@@ -16,6 +16,7 @@ Login = {
         $('#main').after(loginmodal);
         $('#loginModal').slideDown().modal();
         $(Login.setup);
+        $(SubmitLogin.setup);
         return(false);
     },
 }
