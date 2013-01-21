@@ -1,20 +1,21 @@
-<div class="modal hide fade in" id="user-edit">
+<div class="modal hide fade in" id="editModal">
   <div class="modal-header">
     <button class="close" data-dismiss="modal">x</button>
     <h2>Edit User</h2>
   </div>
 
-<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, class: "well"}) do |f| %>
-  <%= f.error_notification %>
-
-    <%= f.input :email %>
-    <%= f.input :password %> <i>(blank if you don't want to change it)</i><br /><br />
-    <%= f.input :password_confirmation %>
-    <%= f.input :current_password %><i>(we need your current password)</i><br /><br />
-    <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+<%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put, id: "ajax_edit", class: "well"}) do |f| %>
+  <div class="modal-body">
+      <%= f.error_notification %>
+      <%= f.input :email %>
+      <%= f.input :password %> <i>(blank if you don't want to change it)</i><br /><br />
+      <%= f.input :password_confirmation %>
+      <%= f.input :current_password %><i>(we need your current password)</i><br /><br />
+      <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), :data => { :confirm => "Are you sure?" }, :method => :delete %>.</p>
+  </div>
   <div class="modal-footer">
-    <%= f.button :submit, "Update", :class => "btn btn-warning", :data => { :dismiss => "modal"} %>
-    <a href="#" class="btn" data-dismiss="modal">Close</a>
+    <%= f.button :submit, "Update", :class => "btn btn-warning" %>
+    <a href="#" class="btn close" data-dismiss="modal">Close</a>
   </div>
 <% end %>
 </div>
