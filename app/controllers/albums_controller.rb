@@ -19,11 +19,11 @@ class AlbumsController < ApplicationController
     @album = Album.find_by_name(name_album)
     if not @album.tracks
       a = Album.find_album_in_lastfm(params[:name], name_album)
-      updateAlbum(a, @album)
+      updateAlbum(a, @album) if a
     end
     if @album.contains.empty?
       @songs_search = Album.find_songs_in_lastfm(@artist.name, @album.name)
-      createSongs(@songs_search, @artist)
+      createSongs(@songs_search, @artist) if @songs_search
     end
     redirect_to album_path(@artist.name, params[:title])
   end
