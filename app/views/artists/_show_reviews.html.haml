@@ -10,9 +10,9 @@
           .row
             .span1
               = image_tag review.user.gravatar
-            .span7
+            .span10
               %strong= link_to review.user.name, profile_path(review.user.profile_name)
-              %p= review.comments
+              %p{:class=>"cut-paragraph"}= review.comments
               .text-info= time_ago_in_words(review.created_at) + " ago"
               %br
     %div{:class=>'alt_page_navigation'}

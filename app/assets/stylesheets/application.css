@@ -140,5 +140,8 @@ hr {
 	color:gray !important;
 }
 
-
+p.cut-paragraph {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
