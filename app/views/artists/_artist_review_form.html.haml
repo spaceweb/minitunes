@@ -1,6 +1,6 @@
 = form_tag reviews_path , :id => 'NewReview' do
   = label :review, :comments, 'Add your comment'
-  = text_area :review, :comments, :id => 'textareareviews', :required => true, :autofocus=> true
+  = text_area :review, :comments, :id => 'textareareviews', :required => true
   = text_field_tag 'x-webkit-speech', nil, options = {:id => 'inputspeech', :"onwebkitspeechchange" => "transcribe(this.value)", :"x-webkit-speech" => ""}
 
 
