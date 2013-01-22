@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+ #= require social-share-button
 
 $(document).ready(function (){
   // Remove flash messages

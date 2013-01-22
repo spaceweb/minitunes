@@ -9,3 +9,5 @@
   = form_tag user_artist_path, method: :post do |form|
     = hidden_field_tag(:id, @artist.id)
     = submit_tag "Add Artist", {class: 'btn btn-primary btn-add', id: @artist.id, :style=>btn_add}
+
+  = social_share_button_tag()

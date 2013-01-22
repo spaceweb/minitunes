@@ -28,6 +28,7 @@ gem 'jquery-rails'
 
 gem 'haml'
 gem 'devise'
+gem 'social-share-button'
 
 group :test do
   gem 'rspec-rails'
